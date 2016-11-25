@@ -79,7 +79,10 @@ public class Wave: MonoBehaviour {
 
     void Update()
     {
+        if (life > 0.5f)
+            return;
         life += Time.deltaTime/fadeSpeed;
+        
         radius += travelSpeed * Time.deltaTime;
         trailWidth = radius * 0.8f;
 
@@ -90,7 +93,7 @@ public class Wave: MonoBehaviour {
         midColor = Color.Lerp(StartMidColor, Color.black, life);
         trailColor = Color.Lerp(StartTrailColor, Color.black, life);
 
-        sphere.GetComponent<Renderer>().material.color = startSphereColor*edgeColor;
+        //sphere.GetComponent<Renderer>().material.color = startSphereColor*edgeColor;
 
         if (life > 1) // Yep this is a bit weird :P
         {
@@ -107,6 +110,8 @@ public class Wave: MonoBehaviour {
     {
         UpdateMaterial();
         RaycastCornerBlit(src, dst, mat);
+
+        
         
      }
 
@@ -118,6 +123,8 @@ public class Wave: MonoBehaviour {
         float camAspect = _camera.aspect;
 
         float fovWHalf = camFov * 0.5f;
+
+        
 
         Vector3 toRight = _camera.transform.right * Mathf.Tan(fovWHalf * Mathf.Deg2Rad) * camAspect;
         Vector3 toTop = _camera.transform.up * Mathf.Tan(fovWHalf * Mathf.Deg2Rad);

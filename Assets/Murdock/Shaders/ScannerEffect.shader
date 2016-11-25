@@ -84,7 +84,7 @@
 
 			half4 frag (VertOut i) : SV_Target
 			{
-				half4 col = tex2D(_MainTex, i.uv);
+				half4 col = tex2D(_MainTex, UnityStereoScreenSpaceUVAdjust(i.uv, _MainTex_ST));
 
 				float rawDepth = DecodeFloatRG(tex2D(_CameraDepthTexture, i.uv_depth));
 				float linearDepth = Linear01Depth(rawDepth);
