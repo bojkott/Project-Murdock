@@ -1,5 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 31f6763de0920574092c8a69a66c717e
 DefaultImporter:
   userData: 
   assetBundleName: 
+=======
+guid: b6c6403004dd55b49812e19c35b1f248
+timeCreated: 1480076188
+licenseType: Free
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

@@ -1,11 +1,24 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 75febd242c999f04d9654522a10c006b
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - rand: {fileID: 2800000, guid: a181ca8e3c62f3e4b8f183f6c586b032, type: 3}
   - aoShader: {fileID: 4800000, guid: 95616c020c5604dda96cf76afbbc0272, type: 3}
+=======
+guid: 61e153843d78ddd41b7f1919b18656b8
+timeCreated: 1480076195
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
+<<<<<<< HEAD
+=======
+  assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

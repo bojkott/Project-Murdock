@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3309686a9fbbe6e42a182d5e0257704c
 MonoImporter:
   serializedVersion: 2
@@ -7,7 +8,19 @@ MonoImporter:
       type: 3}
   - contrastCompositeShader: {fileID: 4800000, guid: 273404942eede4ea1883ca1fb2942507,
       type: 3}
+=======
+guid: cfdc86ec9cc280445b5f9c68ff7da7d9
+timeCreated: 1480076197
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
+<<<<<<< HEAD
+=======
+  assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

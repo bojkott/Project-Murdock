@@ -1,10 +1,23 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 730475ee64f9a894bbac0d9e6f22e813
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - edgeDetectShader: {fileID: 4800000, guid: 0d1644bdf064147baa97f235fc5b4903, type: 3}
+=======
+guid: 017ddbdbc2d032c439d0235e5e40db92
+timeCreated: 1480076192
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
+<<<<<<< HEAD
+=======
+  assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

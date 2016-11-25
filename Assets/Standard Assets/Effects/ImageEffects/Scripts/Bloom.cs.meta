@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7fceaeb339b971b429c4cc600acabd13
 MonoImporter:
   serializedVersion: 2
@@ -11,7 +12,19 @@ MonoImporter:
       type: 3}
   - brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
       type: 3}
+=======
+guid: 399ef7d9d1752a044ace0ce26f4dc80a
+timeCreated: 1480076194
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
+<<<<<<< HEAD
+=======
+  assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
