@@ -1,0 +1,172 @@
+fileFormatVersion: 2
+guid: b45fd79428fbbe94caf8cf448d656965
+timeCreated: 1480076238
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: CableJointRoot
+    100002: joint10
+    100004: joint11
+    100006: joint12
+    100008: joint13
+    100010: joint14
+    100012: joint15
+    100014: joint16
+    100016: joint17
+    100018: joint18
+    100020: joint19
+    100022: joint20
+    100024: joint21
+    100026: joint22
+    100028: joint23
+    100030: joint24
+    100032: joint25
+    100034: joint26
+    100036: joint27
+    100038: joint28
+    100040: joint29
+    100042: joint3
+    100044: joint30
+    100046: joint31
+    100048: joint4
+    100050: joint5
+    100052: joint6
+    100054: joint7
+    100056: joint8
+    100058: joint9
+    100060: PhoneBody
+    100062: PhoneCable
+    100064: PhoneHead
+    100066: polySurface12
+    100068: polySurface13
+    100070: polySurface14
+    100072: polySurface15
+    100074: polySurface16
+    100076: polySurface17
+    100078: //RootNode
+    100080: transform1
+    100082: transform2
+    100084: transform3
+    100086: transform4
+    100088: transform5
+    100090: transform6
+    400000: CableJointRoot
+    400002: joint10
+    400004: joint11
+    400006: joint12
+    400008: joint13
+    400010: joint14
+    400012: joint15
+    400014: joint16
+    400016: joint17
+    400018: joint18
+    400020: joint19
+    400022: joint20
+    400024: joint21
+    400026: joint22
+    400028: joint23
+    400030: joint24
+    400032: joint25
+    400034: joint26
+    400036: joint27
+    400038: joint28
+    400040: joint29
+    400042: joint3
+    400044: joint30
+    400046: joint31
+    400048: joint4
+    400050: joint5
+    400052: joint6
+    400054: joint7
+    400056: joint8
+    400058: joint9
+    400060: PhoneBody
+    400062: PhoneCable
+    400064: PhoneHead
+    400066: polySurface12
+    400068: polySurface13
+    400070: polySurface14
+    400072: polySurface15
+    400074: polySurface16
+    400076: polySurface17
+    400078: //RootNode
+    400080: transform1
+    400082: transform2
+    400084: transform3
+    400086: transform4
+    400088: transform5
+    400090: transform6
+    2300000: PhoneBody
+    2300002: PhoneHead
+    3300000: PhoneBody
+    3300002: PhoneHead
+    4300000: PhoneHead
+    4300002: PhoneCable
+    4300004: PhoneBody
+    9500000: //RootNode
+    13700000: PhoneCable
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
