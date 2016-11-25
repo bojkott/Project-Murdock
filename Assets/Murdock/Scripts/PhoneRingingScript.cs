@@ -3,8 +3,6 @@ using System.Collections;
 
 public class PhoneRingingScript : MonoBehaviour
 {
-    public AudioSource audio;
-
     private float angle;
     private int speed;
     private float flipFactor;
@@ -15,8 +13,6 @@ public class PhoneRingingScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        audio.Play();
-        audio.loop = true;
 
         this.angle = Mathf.PI / 2; // initial angle set to half way through the animation
 
