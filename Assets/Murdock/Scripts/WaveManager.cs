@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class WaveManager : MonoBehaviour
 {
     public Material waveMaterial;
+    public GameObject waveSpherePrefab;
 
     void Start()
     {
@@ -20,6 +21,8 @@ public class WaveManager : MonoBehaviour
         wave.SetColor(col);
         wave.SetFadeSpeed(fadeSpeed);
         wave.SetTrailModifier(trailModifier);
+        wave.SetSphere(waveSpherePrefab);
+       
     }
 
 

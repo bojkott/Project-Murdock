@@ -23,6 +23,9 @@ public class Wave: MonoBehaviour {
     private Camera _camera;
     private float trailModifer;
 
+    private GameObject sphere;
+    private Color startSphereColor;
+
     void Start()
     {
         _camera = GetComponent<Camera>();
@@ -66,18 +69,35 @@ public class Wave: MonoBehaviour {
         trailModifer = modifier;
     }
 
+
+    public void SetSphere(GameObject prefab)
+    {
+        sphere = (GameObject)Instantiate(prefab, this.position, Quaternion.identity);
+        startSphereColor = sphere.GetComponent<Renderer>().material.color;
+
+    }
+
     void Update()
     {
         life += Time.deltaTime/fadeSpeed;
         radius += travelSpeed * Time.deltaTime;
         trailWidth = radius * 0.8f;
 
+        sphere.transform.localScale = new Vector3(radius*2, radius*2, radius*2);
+
+
         edgeColor = Color.Lerp(StartEdgeColor, Color.black, life);
         midColor = Color.Lerp(StartMidColor, Color.black, life);
         trailColor = Color.Lerp(StartTrailColor, Color.black, life);
 
+        sphere.GetComponent<Renderer>().material.color = startSphereColor*edgeColor;
+
         if (life > 1) // Yep this is a bit weird :P
-            Destroy(this);
+        {
+            Destroy(sphere);
+            Destroy(this);       
+        }
+            
         
     }
 
