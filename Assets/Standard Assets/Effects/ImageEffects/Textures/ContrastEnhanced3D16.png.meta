@@ -1,4 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: ecd9a2c463dcb476891e43d7c9f16ffa
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+=======
 guid: 638a6262fa0248a408821c418e5670b9
 timeCreated: 1480076210
 licenseType: Free
@@ -8,6 +16,7 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -17,6 +26,15 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
+<<<<<<< HEAD
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 1
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+=======
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
@@ -27,6 +45,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
@@ -35,6 +54,12 @@ TextureImporter:
     wrapMode: -1
   nPOTScale: 1
   lightmap: 0
+<<<<<<< HEAD
+  compressionQuality: 50
+  textureType: 5
+  buildTargetSettings: []
+  userData: 
+=======
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
@@ -57,3 +82,4 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

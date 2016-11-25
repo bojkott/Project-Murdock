@@ -1,4 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: ea59781cad112c75d0008dfa8d76c639
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - shader: {fileID: 4800000, guid: 67f8781cad112c75d0008dfa8d76c639, type: 3}
+  - textureRamp: {fileID: 2800000, guid: d440902fad11e807d00044888d76c639, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+=======
 guid: 2f20ff9e769d66b4e956bca1bc198bc4
 timeCreated: 1480076194
 licenseType: Free
@@ -10,3 +21,4 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

@@ -1,7 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 1167c0a28d11119930004d8a4241aa39
+=======
 guid: 8a22c6bd9eb00414399f02ebb64818ef
 timeCreated: 1480076211
 licenseType: Free
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -11,12 +15,35 @@ TextureImporter:
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
+<<<<<<< HEAD
+    borderMipMap: 1
+    mipMapFadeDistanceStart: 2
+=======
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
     mipMapFadeDistanceEnd: 3
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
+<<<<<<< HEAD
+    heightScale: .100000001
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 1
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 512
+  textureSettings:
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapMode: 1
+=======
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
@@ -33,15 +60,48 @@ TextureImporter:
     aniso: -1
     mipBias: -1
     wrapMode: -1
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   nPOTScale: 1
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+<<<<<<< HEAD
+=======
   allowsAlphaSplitting: 0
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
+<<<<<<< HEAD
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 0
+  textureType: 5
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 128
+    textureFormat: 33
+    compressionQuality: 50
+  - buildTarget: Android
+    maxTextureSize: 128
+    textureFormat: 13
+    compressionQuality: 50
+  - buildTarget: BlackBerry
+    maxTextureSize: 128
+    textureFormat: 13
+    compressionQuality: 50
+  - buildTarget: WP8
+    maxTextureSize: 128
+    textureFormat: 12
+    compressionQuality: 50
+  spriteSheet:
+    sprites: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+=======
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
@@ -57,3 +117,4 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

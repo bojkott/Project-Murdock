@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Wave: MonoBehaviour {
+public class Wave {
 
     private Vector3 position;
     private float radius;
@@ -10,23 +10,23 @@ public class Wave: MonoBehaviour {
 
     private float trailWidth;
 
-    private Color edgeColor;
-    private Color midColor;
-    private Color trailColor;
-
-    private Color StartEdgeColor;
-    private Color StartMidColor;
-    private Color StartTrailColor;
+    private Color startWaveColor = Color.white;
+    private Color waveColor;
 
     private float life;
     private float fadeSpeed;
     private Camera _camera;
     private float trailModifer;
 
+    public GameObject sphere;
+    private Color startSphereColor;
+    private float thickness;
+    private float maxThickness;
+
+    public bool alive = true;
+
     void Start()
     {
-        _camera = GetComponent<Camera>();
-        _camera.depthTextureMode = DepthTextureMode.Depth;
         this.radius = 0;
 
     }
@@ -36,24 +36,25 @@ public class Wave: MonoBehaviour {
         position = pos;
     }
 
+    public Vector3 GetPosition()
+    {
+        return position;
+    }
+
     public void setTravelSpeed(float speed)
     {
         travelSpeed = speed;
     }
 
-    public void SetMaterial(Material mat)
-    {
-        this.mat = new Material(mat);
-        StartEdgeColor = mat.GetColor("_LeadColor");
-        StartMidColor = mat.GetColor("_MidColor");
-        StartTrailColor = mat.GetColor("_TrailColor");
-    }
-
     public void SetColor(Color col)
     {
-        StartEdgeColor *= col;
-        StartMidColor *= col;
-        StartTrailColor *= col;
+        startWaveColor *= col;
+        waveColor = startWaveColor;
+    }
+
+    public Color GetColor()
+    {
+        return waveColor;
     }
 
     public void SetFadeSpeed(float fadeSpeed)
@@ -66,105 +67,52 @@ public class Wave: MonoBehaviour {
         trailModifer = modifier;
     }
 
-    void Update()
+
+    public float GetRadius()
     {
-        life += Time.deltaTime/fadeSpeed;
-        radius += travelSpeed * Time.deltaTime;
-        trailWidth = radius * 0.8f;
-
-        edgeColor = Color.Lerp(StartEdgeColor, Color.black, life);
-        midColor = Color.Lerp(StartMidColor, Color.black, life);
-        trailColor = Color.Lerp(StartTrailColor, Color.black, life);
-
-        if (life > 1) // Yep this is a bit weird :P
-            Destroy(this);
-        
+        return radius;
     }
 
-
-    [ImageEffectOpaque]
-    void OnRenderImage(RenderTexture src, RenderTexture dst)
+    public void SetSphere(GameObject sphere)
     {
-        UpdateMaterial();
-        RaycastCornerBlit(src, dst, mat);
-        
-     }
+        this.sphere = sphere;
+        startSphereColor = sphere.GetComponent<Renderer>().material.color;
 
-    void RaycastCornerBlit(RenderTexture source, RenderTexture dest, Material mat)
-    {
-        // Compute Frustum Corners
-        float camFar = _camera.farClipPlane;
-        float camFov = _camera.fieldOfView;
-        float camAspect = _camera.aspect;
-
-        float fovWHalf = camFov * 0.5f;
-
-        Vector3 toRight = _camera.transform.right * Mathf.Tan(fovWHalf * Mathf.Deg2Rad) * camAspect;
-        Vector3 toTop = _camera.transform.up * Mathf.Tan(fovWHalf * Mathf.Deg2Rad);
-
-        Vector3 topLeft = (_camera.transform.forward - toRight + toTop);
-        float camScale = topLeft.magnitude * camFar;
-
-        topLeft.Normalize();
-        topLeft *= camScale;
-
-        Vector3 topRight = (_camera.transform.forward + toRight + toTop);
-        topRight.Normalize();
-        topRight *= camScale;
-
-        Vector3 bottomRight = (_camera.transform.forward + toRight - toTop);
-        bottomRight.Normalize();
-        bottomRight *= camScale;
-
-        Vector3 bottomLeft = (_camera.transform.forward - toRight - toTop);
-        bottomLeft.Normalize();
-        bottomLeft *= camScale;
-
-        // Custom Blit, encoding Frustum Corners as additional Texture Coordinates
-        RenderTexture.active = dest;
-
-        mat.SetTexture("_MainTex", source);
-
-        GL.PushMatrix();
-        GL.LoadOrtho();
-
-        mat.SetPass(0);
-
-        GL.Begin(GL.QUADS);
-
-        GL.MultiTexCoord2(0, 0.0f, 0.0f);
-        GL.MultiTexCoord(1, bottomLeft);
-        GL.Vertex3(0.0f, 0.0f, 0.0f);
-
-        GL.MultiTexCoord2(0, 1.0f, 0.0f);
-        GL.MultiTexCoord(1, bottomRight);
-        GL.Vertex3(1.0f, 0.0f, 0.0f);
-
-        GL.MultiTexCoord2(0, 1.0f, 1.0f);
-        GL.MultiTexCoord(1, topRight);
-        GL.Vertex3(1.0f, 1.0f, 0.0f);
-
-        GL.MultiTexCoord2(0, 0.0f, 1.0f);
-        GL.MultiTexCoord(1, topLeft);
-        GL.Vertex3(0.0f, 1.0f, 0.0f);
-
-        GL.End();
-        GL.PopMatrix();
     }
 
-
-    public void UpdateMaterial()
+    public void SetThickness(float thickness)
     {
-        if(mat)
+        this.maxThickness = thickness;
+    }
+
+    public float GetThickness()
+    {
+        return thickness;
+    }
+
+    public void Update(AnimationCurve growthCurve, AnimationCurve fadeCurve, AnimationCurve thicknessCurve)
+    {
+        life += Time.deltaTime / fadeSpeed;
+
+        radius += travelSpeed * growthCurve.Evaluate(life);
+
+        sphere.transform.localScale = new Vector3(radius*2, radius*2, radius*2);
+
+    
+
+        thickness = thicknessCurve.Evaluate(life) * maxThickness;
+
+        waveColor = Color.Lerp(startWaveColor, Color.black, fadeCurve.Evaluate(life));
+
+        sphere.GetComponent<Renderer>().material.color = startSphereColor*waveColor;
+
+        if (life > 1.1f) // Yep this is a bit weird :P
         {
-            mat.SetVector("_WorldSpaceScannerPos", position);
-            mat.SetFloat("_ScanDistance", radius);
-            mat.SetFloat("_ScanWidth", trailWidth);
-            mat.SetColor("_LeadColor", edgeColor);
-            mat.SetColor("_MidColor", midColor);
-            mat.SetColor("_TrailColor", trailColor);
-            
+            alive = false;
+           
         }
-        
-    }
+
+    }    
 }
+
+

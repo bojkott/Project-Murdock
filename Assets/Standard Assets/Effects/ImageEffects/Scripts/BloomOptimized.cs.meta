@@ -1,12 +1,23 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 4975a6e437fc3b149a8cd508ce5bdd69
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
+=======
 guid: 19b7ad391c5029c48bd2a2b554dff5b5
 timeCreated: 1480076193
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
+<<<<<<< HEAD
+=======
   assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

@@ -1,4 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: bf34d2a25450349699e8ae6456fa7ca9
+ShaderImporter:
+  userData: 
+=======
 guid: 386745978f7b4584e86503f9c14e5b36
 timeCreated: 1480076216
 licenseType: Free
@@ -7,3 +12,4 @@ ShaderImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+>>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
