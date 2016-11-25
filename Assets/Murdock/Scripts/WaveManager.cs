@@ -13,6 +13,13 @@ public class WaveManager : MonoBehaviour
     Vector4[] wavesPos = new Vector4[MAX_WAVES];
     Color[] wavesColor = new Color[MAX_WAVES];
     float[] wavesRadius = new float[MAX_WAVES];
+    float[] wavesThickness = new float[MAX_WAVES];
+
+
+    public AnimationCurve growthCurve;
+    public AnimationCurve fadeCurve;
+    public AnimationCurve thicknessCurve;
+
 
     void Start()
     {
@@ -28,6 +35,7 @@ public class WaveManager : MonoBehaviour
         wave.SetTrailModifier(trailModifier);
         GameObject sphere = (GameObject)Instantiate(waveSpherePrefab, pos, Quaternion.identity);
         wave.SetSphere(sphere);
+        wave.SetThickness(1);
 
 
         waves.Add(wave);
@@ -40,10 +48,11 @@ public class WaveManager : MonoBehaviour
 
         for(int i=0;i<waves.Count;i++)
         {
-            waves[i].Update();             
+            waves[i].Update(growthCurve, fadeCurve, thicknessCurve);             
             wavesPos[i] = waves[i].GetPosition();
             wavesColor[i] = waves[i].GetColor();
             wavesRadius[i] = waves[i].GetRadius();
+            wavesThickness[i] = waves[i].GetThickness();
             if (!waves[i].alive)
             {
                 Destroy(waves[i].sphere);
@@ -51,12 +60,12 @@ public class WaveManager : MonoBehaviour
             }
         }
 
-        Debug.Log(waves.Count);
 
         waveMaterial.SetFloat("_WavesCount", waves.Count);
         if(waves.Count > 0)
         {
             waveMaterial.SetFloatArray("_Radius", wavesRadius);
+            waveMaterial.SetFloatArray("_Thickness", wavesThickness);
             waveMaterial.SetVectorArray("_Waves", wavesPos);
             waveMaterial.SetColorArray("_Color", wavesColor);
         }

@@ -13,7 +13,6 @@ public class Wave {
     private Color startWaveColor = Color.white;
     private Color waveColor;
 
-
     private float life;
     private float fadeSpeed;
     private Camera _camera;
@@ -21,6 +20,8 @@ public class Wave {
 
     public GameObject sphere;
     private Color startSphereColor;
+    private float thickness;
+    private float maxThickness;
 
     public bool alive = true;
 
@@ -79,21 +80,33 @@ public class Wave {
 
     }
 
-    public void Update()
+    public void SetThickness(float thickness)
+    {
+        this.maxThickness = thickness;
+    }
+
+    public float GetThickness()
+    {
+        return thickness;
+    }
+
+    public void Update(AnimationCurve growthCurve, AnimationCurve fadeCurve, AnimationCurve thicknessCurve)
     {
         life += Time.deltaTime / fadeSpeed;
 
-        radius += travelSpeed * Time.deltaTime;
-        trailWidth = radius * 0.8f;
+        radius += travelSpeed * growthCurve.Evaluate(life);
 
-           sphere.transform.localScale = new Vector3(radius*2, radius*2, radius*2);
+        sphere.transform.localScale = new Vector3(radius*2, radius*2, radius*2);
 
+    
 
-        waveColor = Color.Lerp(waveColor, Color.black, life);
+        thickness = thicknessCurve.Evaluate(life) * maxThickness;
+
+        waveColor = Color.Lerp(startWaveColor, Color.black, fadeCurve.Evaluate(life));
 
         sphere.GetComponent<Renderer>().material.color = startSphereColor*waveColor;
 
-        if (life > 1) // Yep this is a bit weird :P
+        if (life > 1.1f) // Yep this is a bit weird :P
         {
             alive = false;
            

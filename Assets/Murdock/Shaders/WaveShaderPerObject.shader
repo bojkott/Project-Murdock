@@ -29,6 +29,7 @@ Shader "Custom/WaveShaderPerObject" {
 				uniform int _WavesCount;
 				uniform float3 _Waves[200];		// (x, y, z) = position
 				uniform float _Radius[200];		// radius
+				uniform float _Thickness[200];
 				uniform float4 _Color[200];
 
 
@@ -41,12 +42,14 @@ Shader "Custom/WaveShaderPerObject" {
 						// Calculates the contribution of each point
 						half dist = distance(output.worldPos, _Waves[i].xyz);
 
-						if (dist < _Radius[i] && dist > _Radius[i]*0.3)
+						if (dist < _Radius[i] && dist > _Radius[i]-_Thickness[i])
 						{
-							float shade = 0;
-							if(dist < _Radius[i]*0.5 && dist > _Radius[i] * 0.3)
-								shade = dist/(_Radius[i] - dist);
-							color += _Color[i]*shade;
+							float shade = dist/(_Radius[i] - dist);
+							color += _Color[i]*shade * 0.3;
+
+							if (_Radius[i] - dist < 0.2)
+								color *= 0;
+							
 						}
 
 					}
