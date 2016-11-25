@@ -27,7 +27,7 @@ public class PhoneRingingScript : MonoBehaviour
         this.ringTimer = 0.6f;
         pauseTimer = 1.729f;
 
-        this.syncTimer = 1.8f;
+        this.syncTimer = 1.6f;
     }
 
     // Update is called once per frame
