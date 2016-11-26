@@ -21,6 +21,7 @@ public class MicophoneWaveSpawner : MonoBehaviour {
     void Awake()
     {
         _audio = GetComponent<AudioSource>();
+
        
     }
     void Start()

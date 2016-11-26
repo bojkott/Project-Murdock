@@ -47,7 +47,7 @@ public class SoundWaveEmitter : MonoBehaviour
 
             
 
-            Color color = Color.HSVToRGB(h, 0.5f, 1.0f);
+            Color color = Color.HSVToRGB(h, saturation, vibrance);
 
             if(wm != null)
             {
