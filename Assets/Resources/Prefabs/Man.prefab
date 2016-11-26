@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011237735470}
+  - 114: {fileID: 114000011779504380}
   m_Layer: 0
   m_Name: Man
   m_TagString: Untagged
@@ -135,3 +136,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013612676316}
   m_Mesh: {fileID: 4300000, guid: c240155413fc90847858dc2e976eb137, type: 3}
+--- !u!114 &114000011779504380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011865332168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a09864630f1f24b8af4b7f14281a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
