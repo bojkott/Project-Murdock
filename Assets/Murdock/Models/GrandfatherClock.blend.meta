@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: bb475dc6387818a40bb4787ee7d54e7a
+timeCreated: 1480126265
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 1nd_Positioning_Cog
+    100002: 2nd_Positioning_Cog
+    100004: 2nd_Wheel
+    100006: 3rd_Positioning_Cog
+    100008: 4th_Positioning_Cog
+    100010: 4th_Wheel
+    100012: 5th_Positioning_Cog
+    100014: 5th_Wheel
+    100016: Base
+    100018: Drum
+    100020: //RootNode
+    100022: HookDrum
+    100024: HookWeight
+    100026: Hour_Hand
+    100028: Hour_Hand_Cog
+    100030: Hours_Cog
+    100032: Mantle
+    100034: Minutes_Cog
+    100036: Minutes_Hand
+    100038: Minutes_Hand_Cog
+    100040: Pendulum
+    100042: Seconds_Cog
+    100044: Seconds_Hand
+    100046: Seconds_Hand_Cog
+    100048: Speedset
+    100050: Speedset_hours
+    100052: Speedset_miniutes
+    100054: Speedset_seconds
+    100056: Stand
+    100058: Stand_MeshPart0
+    100060: Stand_MeshPart1
+    100062: Stand_MeshPart2
+    100064: Stand_MeshPart3
+    100066: Weight
+    100068: Wire
+    400000: 1nd_Positioning_Cog
+    400002: 2nd_Positioning_Cog
+    400004: 2nd_Wheel
+    400006: 3rd_Positioning_Cog
+    400008: 4th_Positioning_Cog
+    400010: 4th_Wheel
+    400012: 5th_Positioning_Cog
+    400014: 5th_Wheel
+    400016: Base
+    400018: Drum
+    400020: //RootNode
+    400022: HookDrum
+    400024: HookWeight
+    400026: Hour_Hand
+    400028: Hour_Hand_Cog
+    400030: Hours_Cog
+    400032: Mantle
+    400034: Minutes_Cog
+    400036: Minutes_Hand
+    400038: Minutes_Hand_Cog
+    400040: Pendulum
+    400042: Seconds_Cog
+    400044: Seconds_Hand
+    400046: Seconds_Hand_Cog
+    400048: Speedset
+    400050: Speedset_hours
+    400052: Speedset_miniutes
+    400054: Speedset_seconds
+    400056: Stand
+    400058: Stand_MeshPart0
+    400060: Stand_MeshPart1
+    400062: Stand_MeshPart2
+    400064: Stand_MeshPart3
+    400066: Weight
+    400068: Wire
+    2300000: 1nd_Positioning_Cog
+    2300002: 2nd_Positioning_Cog
+    2300004: 2nd_Wheel
+    2300006: 3rd_Positioning_Cog
+    2300008: 4th_Positioning_Cog
+    2300010: 4th_Wheel
+    2300012: 5th_Positioning_Cog
+    2300014: 5th_Wheel
+    2300016: Drum
+    2300018: Hour_Hand
+    2300020: Hour_Hand_Cog
+    2300022: Hours_Cog
+    2300024: Mantle
+    2300026: Minutes_Cog
+    2300028: Minutes_Hand
+    2300030: Minutes_Hand_Cog
+    2300032: Pendulum
+    2300034: Seconds_Cog
+    2300036: Seconds_Hand
+    2300038: Seconds_Hand_Cog
+    2300040: Stand_MeshPart0
+    2300042: Stand_MeshPart1
+    2300044: Stand_MeshPart2
+    2300046: Stand_MeshPart3
+    2300048: Weight
+    2300050: Wire
+    3300000: 1nd_Positioning_Cog
+    3300002: 2nd_Positioning_Cog
+    3300004: 2nd_Wheel
+    3300006: 3rd_Positioning_Cog
+    3300008: 4th_Positioning_Cog
+    3300010: 4th_Wheel
+    3300012: 5th_Positioning_Cog
+    3300014: 5th_Wheel
+    3300016: Drum
+    3300018: Hour_Hand
+    3300020: Hour_Hand_Cog
+    3300022: Hours_Cog
+    3300024: Mantle
+    3300026: Minutes_Cog
+    3300028: Minutes_Hand
+    3300030: Minutes_Hand_Cog
+    3300032: Pendulum
+    3300034: Seconds_Cog
+    3300036: Seconds_Hand
+    3300038: Seconds_Hand_Cog
+    3300040: Stand_MeshPart0
+    3300042: Stand_MeshPart1
+    3300044: Stand_MeshPart2
+    3300046: Stand_MeshPart3
+    3300048: Weight
+    3300050: Wire
+    4300000: Mantle
+    4300002: Stand_MeshPart0
+    4300004: Stand_MeshPart1
+    4300006: Stand_MeshPart2
+    4300008: Stand_MeshPart3
+    4300010: Seconds_Cog
+    4300012: Seconds_Hand_Cog
+    4300014: Seconds_Hand
+    4300016: 2nd_Wheel
+    4300018: Minutes_Cog
+    4300020: 1nd_Positioning_Cog
+    4300022: Pendulum
+    4300024: 4th_Wheel
+    4300026: Minutes_Hand_Cog
+    4300028: Minutes_Hand
+    4300030: 3rd_Positioning_Cog
+    4300032: Hours_Cog
+    4300034: 4th_Positioning_Cog
+    4300036: 2nd_Positioning_Cog
+    4300038: 5th_Positioning_Cog
+    4300040: 5th_Wheel
+    4300042: Drum
+    4300044: Hour_Hand_Cog
+    4300046: Hour_Hand
+    4300048: Weight
+    4300050: Wire
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
