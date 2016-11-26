@@ -6,7 +6,7 @@ public class Bink : VRTK_InteractableObject
 {
     public AudioSource binkSource;
 
-    private const float maxCooldown = 0.5f;
+    private const float maxCooldown = 0.2f;
     private float cooldown = 0.0f;
     private bool triggered = false;
     private bool firstTime = true;

@@ -34,7 +34,7 @@ public class ShoeAnimation : MonoBehaviour {
 
         if (Mathf.Clamp(Mathf.Sin(angle) * stepHeight, 0, stepHeight) > 0)
         {
-            this.transform.position = new Vector3(0, Mathf.Clamp(Mathf.Sin(angle) * stepHeight, 0, stepHeight) + initPos.y, this.transform.position.z - horizontalStepDistance * Time.deltaTime);
+            this.transform.position = new Vector3(this.initPos.x, Mathf.Clamp(Mathf.Sin(angle) * stepHeight, 0, stepHeight) + initPos.y, this.transform.position.z - horizontalStepDistance * Time.deltaTime);
             if (!stepSound.isPlaying && this.nextStep)
             {
                 this.nextStep = false;
@@ -43,7 +43,7 @@ public class ShoeAnimation : MonoBehaviour {
         }
         else
         {
-            otherShoe.transform.position = new Vector3(0, Mathf.Clamp(Mathf.Sin(-angle) * stepHeight, 0, stepHeight) + otherInitPos.y, otherShoe.transform.position.z - horizontalStepDistance * Time.deltaTime);
+            otherShoe.transform.position = new Vector3(otherInitPos.x, Mathf.Clamp(Mathf.Sin(-angle) * stepHeight, 0, stepHeight) + otherInitPos.y, otherShoe.transform.position.z - horizontalStepDistance * Time.deltaTime);
             if (!stepSound.isPlaying && !this.nextStep)
             {
                 this.nextStep = true;
