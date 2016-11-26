@@ -49,13 +49,16 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
-        
+
+        Color average_color = new Color();
 
         for(int i=0;i<waves.Count;i++)
         {
             waves[i].Update(growthCurve, fadeCurve, thicknessCurve);             
             wavesPos[i] = waves[i].GetPosition();
             wavesColor[i] = waves[i].GetColor();
+
+            average_color += waves[i].GetColor() / waves.Count;
 
             wavesRadius[i] = waves[i].GetRadius();
             wavesThickness[i] = waves[i].GetThickness();
@@ -66,7 +69,7 @@ public class WaveManager : MonoBehaviour
             }
         }
 
-        Emit_Particles();
+        Emit_Particles(average_color * 3);
 
         waveMaterial.SetFloat("_WavesCount", waves.Count);
         if(waves.Count > 0)
@@ -79,24 +82,21 @@ public class WaveManager : MonoBehaviour
 
     }
 
-    void Emit_Particles() {
+    void Emit_Particles(Color color) {
 
         Camera cam = GetComponent<Camera>();
         ParticleSystem ps = GameObject.Find("Particle System").GetComponent<ParticleSystem>();
-
-        if (!ps)
-            return;
 
         ParticleSystem.EmitParams e_params = new ParticleSystem.EmitParams();
         e_params.startLifetime = 0.8f;
         e_params.startSize = 0.01f;
 
-        float min = 0.0f;
-        float max = 0.5f;
+        float min = 0.25f;
+        float max = 0.50f;
 
-        for (int x = Random.Range(0, (int)(cam.pixelWidth * max)); x < cam.pixelWidth; x += Random.Range((int)(cam.pixelWidth * min), (int)(cam.pixelWidth * max)))
+        for (int x = (int)Random.Range(0, (cam.pixelWidth * max)); x < cam.pixelWidth; x += (int)Random.Range((cam.pixelWidth * min), (cam.pixelWidth * max)))
         {
-            for (int y = Random.Range(0, (int)(cam.pixelHeight * max)); y < cam.pixelHeight; y += Random.Range((int)(cam.pixelHeight * min), (int)(cam.pixelHeight * max)))
+            for (int y = (int)Random.Range(0, (cam.pixelHeight * max)); y < cam.pixelHeight; y += (int)Random.Range((cam.pixelHeight * min), (cam.pixelHeight * max)))
             {
 
                 RaycastHit hit;
@@ -113,8 +113,10 @@ public class WaveManager : MonoBehaviour
                             e_params.position = hit.point;
                             e_params.velocity = hit.normal * e_params.velocity.magnitude;
                             e_params.startColor = wavesColor[i];
-                           
+                            ps.gameObject.GetComponent<ParticleSystemRenderer>().material.color = color;
                             ps.Emit(e_params, 1);
+
+                            break;
 
                         }
 

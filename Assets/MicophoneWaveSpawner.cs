@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MicophoneWaveSpawner : MonoBehaviour {
+public class MicophoneWaveSpawner : MonoBehaviour
+{
 
-    
     private AudioSource _audio;
 
     void Awake()
     {
         _audio = GetComponent<AudioSource>();
 
-       
     }
     void Start()
     {
@@ -19,7 +18,6 @@ public class MicophoneWaveSpawner : MonoBehaviour {
     }
     void Update()
     {
-
 
         if (_audio.isPlaying)
         {
