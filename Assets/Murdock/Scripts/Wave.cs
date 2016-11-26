@@ -96,7 +96,7 @@ public class Wave {
 
         radius += travelSpeed * growthCurve.Evaluate(life);
 
-        sphere.transform.localScale = new Vector3(radius*2, radius*2, radius*2);
+       
 
     
 
@@ -104,7 +104,12 @@ public class Wave {
 
         waveColor = Color.Lerp(startWaveColor, Color.black, fadeCurve.Evaluate(life));
 
-        sphere.GetComponent<Renderer>().material.color = startSphereColor*waveColor;
+        if(sphere)
+        {
+            sphere.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);
+            sphere.GetComponent<Renderer>().material.color = startSphereColor * waveColor;
+        }
+            
 
         if (life > 1.1f) // Yep this is a bit weird :P
         {
