@@ -60,6 +60,45 @@ public class WaveManager : MonoBehaviour
             }
         }
 
+        Camera cam = GetComponent<Camera>();
+        ParticleSystem ps = GameObject.Find("Particle System").GetComponent<ParticleSystem>();
+        ParticleSystem.EmitParams e_params = new ParticleSystem.EmitParams();
+        e_params.startLifetime = 0.8f;
+        e_params.startSize = 0.01f;
+
+        float min = 0.25f;
+        float max = 0.5f;
+
+        for (int x = Random.Range(0, (int)(cam.pixelWidth * max)); x < cam.pixelWidth; x += Random.Range((int)(cam.pixelWidth * min), (int)(cam.pixelWidth * max)))
+        {
+            for (int y = Random.Range(0, (int)(cam.pixelHeight * max)); y < cam.pixelHeight; y += Random.Range((int)(cam.pixelHeight * min), (int)(cam.pixelHeight * max)))
+            {
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(cam.ScreenPointToRay(new Vector3(x, y, 0)), out hit))
+                {
+
+                    for (int i = 0; i < waves.Count; i++)
+                    {
+                        float distance = Vector3.Distance(waves[i].sphere.transform.position, hit.point) - waves[i].GetRadius();
+                        if (Mathf.Abs(distance) > 1f && distance < 0f)
+                        {
+
+                            e_params.position = hit.point;
+                            e_params.velocity = hit.normal * e_params.velocity.magnitude;
+                            e_params.startColor = wavesColor[i];
+                            ps.Emit(e_params, 1);
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
 
         waveMaterial.SetFloat("_WavesCount", waves.Count);
         if(waves.Count > 0)
