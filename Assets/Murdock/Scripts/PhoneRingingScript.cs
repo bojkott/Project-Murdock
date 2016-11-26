@@ -35,6 +35,8 @@ public class PhoneRingingScript : VRTK_InteractableObject
         this.syncTimer = 0.3f;
 
         this.hasAnswered = false;
+
+        phoneBody.GetComponent<Collider>().enabled = false;
     }
 
     // Update is called once per frame
@@ -49,6 +51,7 @@ public class PhoneRingingScript : VRTK_InteractableObject
             if (!a.isPlaying && !hasAnswered) 
                 a.Play();
             phoneBody.GetComponent<AudioSource>().Stop();
+            phoneBody.GetComponent<Collider>().enabled = true;
             hasAnswered = true;
         } 
         else if (!hasAnswered)
