@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using VRTK;
 
-public class PhoneRingingScript : MonoBehaviour
+public class PhoneRingingScript : VRTK_InteractableObject
 {
     private float angle;
     private int speed;
@@ -10,11 +11,14 @@ public class PhoneRingingScript : MonoBehaviour
     private float pauseTimer;
 
     private float syncTimer;
+    private bool hasAnswered;
+
+    private float transtionTimer = 5.0f;
     // Use this for initialization
     void Start()
     {
 
-        this.angle = Mathf.PI / 2; // initial angle set to half way through the animation
+        this.angle = Mathf.PI; // initial angle set to half way through the animation
 
         /*Pendle factors*/
         this.speed = 25;
@@ -24,35 +28,53 @@ public class PhoneRingingScript : MonoBehaviour
         pauseTimer = 1.729f;
 
         this.syncTimer = 0.3f;
+
+        this.hasAnswered = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        syncTimer -= Time.deltaTime;
-        if (syncTimer < 0)
+        if (this.grabbedSnapHandle)
         {
-            this.angle += Mathf.PI * Time.deltaTime * speed;
-
-            this.ringTimer -= Time.deltaTime;
-            this.pauseTimer -= Time.deltaTime;
-
-            if (this.ringTimer > 0)
+            hasAnswered = true;
+            this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            AudioSource a = this.gameObject.GetComponent<AudioSource>();
+            if (!a.isPlaying) 
+                a.Play();
+        } 
+        else if (!hasAnswered)
+        {
+            syncTimer -= Time.deltaTime;
+            if (syncTimer < 0)
             {
-                this.transform.RotateAround(this.transform.position, this.transform.forward, Mathf.Cos(angle) * this.flipFactor);
-                this.pauseTimer = 1.729f;
+                this.angle += Mathf.PI * Time.deltaTime * speed;
 
-            }
-            else if (this.pauseTimer < 0)
-            {
-                this.ringTimer = 0.6f;
-            }
-            else
-            {
-                this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, this.transform.rotation.eulerAngles.y, 0);
+                this.ringTimer -= Time.deltaTime;
+                this.pauseTimer -= Time.deltaTime;
+
+                if (this.ringTimer > 0)
+                {
+                    this.transform.RotateAround(this.transform.position, this.transform.forward, Mathf.Cos(angle) * this.flipFactor);
+                    this.pauseTimer = 1.729f;
+
+                }
+                else if (this.pauseTimer < 0)
+                {
+                    this.ringTimer = 0.6f;
+                }
+                else
+                {
+                    this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, this.transform.rotation.eulerAngles.y, 0);
+                }
             }
         }
-
+        if (hasAnswered && !this.grabbedSnapHandle)
+        {
+            transtionTimer -= Time.deltaTime;
+            if (transtionTimer < 0.0f && Main.currentPhase != Main.PhaseID.TWO)
+                Main.currentPhase = Main.PhaseID.TWO; 
+        }
     }
 }

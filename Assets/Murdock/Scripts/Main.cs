@@ -13,8 +13,8 @@ public class Main : MonoBehaviour {
         ERR
     };
 
-    public PhaseID lastPhase;
-    public PhaseID currentPhase;
+    public static PhaseID lastPhase;
+    public static PhaseID currentPhase;
 
     // Phase1
     private GameObject phoneBody;
@@ -29,7 +29,8 @@ public class Main : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        lastPhase = PhaseID.PRE;
+        currentPhase = PhaseID.ONE;
     }
 	
 	// Update is called once per frame
@@ -110,7 +111,6 @@ public class Main : MonoBehaviour {
     void Deinit1Phase()
     {
         Destroy(this.phoneBody);
-        Destroy(this.phoneHead);
         Destroy(this.vulkanBord);
     }
 
@@ -118,6 +118,7 @@ public class Main : MonoBehaviour {
     {
         Destroy(this.shoeLeft);
         Destroy(this.room);
+        Destroy(this.phoneHead);
     }
 
 }
