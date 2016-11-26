@@ -40,6 +40,7 @@ public class Main : MonoBehaviour {
 
         Deinit1Phase();
         Deinit2Phase();
+        Deinit3Phase();
     }
 	
 	// Update is called once per frame

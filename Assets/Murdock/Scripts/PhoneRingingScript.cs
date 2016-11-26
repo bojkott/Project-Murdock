@@ -12,6 +12,9 @@ public class PhoneRingingScript : VRTK_InteractableObject
 
     public GameObject phoneBody;
 
+    private bool colideOnce = true;
+    public AudioSource collisionSound;
+
     private float syncTimer;
     private bool hasAnswered;
 
@@ -80,6 +83,15 @@ public class PhoneRingingScript : VRTK_InteractableObject
             transtionTimer -= Time.deltaTime;
             if (transtionTimer < 0.0f && Main.currentPhase != Main.PhaseID.TWO)
                 Main.currentPhase = Main.PhaseID.TWO; 
+        }
+    }
+
+    void OnCollisionEnter(Collision x)
+    {
+        if (hasAnswered && colideOnce)
+        {
+            this.collisionSound.Play();
+            colideOnce = false;
         }
     }
 }
