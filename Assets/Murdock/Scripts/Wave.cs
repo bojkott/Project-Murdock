@@ -22,6 +22,7 @@ public class Wave {
     private Color startSphereColor;
     private float thickness;
     private float maxThickness;
+    private float sphereMaxScale;
 
     public bool alive = true;
 
@@ -62,9 +63,12 @@ public class Wave {
         this.fadeSpeed = fadeSpeed;
     }
 
-    public void SetTrailModifier(float modifier)
+    public void SetSphereMaxScale(float scale)
     {
-        trailModifer = modifier;
+        if (scale == 0)
+            sphereMaxScale = 100;
+        else
+            sphereMaxScale = scale;
     }
 
 
@@ -106,7 +110,9 @@ public class Wave {
 
         if(sphere)
         {
-            sphere.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);
+            float sphereRadius = Mathf.Clamp(radius, 0, sphereMaxScale);
+            sphere.transform.localScale = new Vector3(sphereRadius * 2, sphereRadius * 2, sphereRadius * 2);
+
             sphere.GetComponent<Renderer>().material.color = startSphereColor * waveColor;
         }
             

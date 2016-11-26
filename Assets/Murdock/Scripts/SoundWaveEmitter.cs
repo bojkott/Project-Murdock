@@ -9,15 +9,22 @@ public class SoundWaveEmitter : MonoBehaviour
 
     public float saturation = 0.5f;
     public float vibrance = 1.0f;
+    public float amp = 1.0f;
+
+    public Color colorMod = Color.white;
+
+    public float sphereMaxSize = 0;
 
     public int samples = 1024;
     public float sensitivity = 100;
-    public int freqs = 128;
+    public int Highfreqs = 128;
+    public int LowFreqs = 0;
     public FFTWindow fftWindow;
     public float loudness = 0;
     private AudioSource _audio;
     private WaveManager wm;
     private float time;
+
 
 
     void Awake()
@@ -39,25 +46,27 @@ public class SoundWaveEmitter : MonoBehaviour
             float waveSpeed = 0;
             float[] spectrum = _audio.GetSpectrumData(samples, 0, fftWindow);
 
-            for(int i=0; i< freqs; i++)
+            for(int i=LowFreqs; i< Highfreqs; i++)
             {
                 h += spectrum[i];
-                waveSpeed += spectrum[i]*i;
+                waveSpeed += spectrum[i]*amp;
             }
+
+            waveSpeed /= (Highfreqs-LowFreqs);
 
             
 
-            Color color = Color.HSVToRGB(h, saturation, vibrance);
+            Color color = Color.HSVToRGB(h, saturation, vibrance)+ colorMod;
 
             if(wm != null)
             {
-                loudness = Mathf.Clamp(loudness, 1, 3);
+              //  loudness = Mathf.Clamp(loudness, 1, 3);
                 Vector3 spawnPos = transform.position;
                 if(origin != null)
                 {
                     spawnPos = origin.position;
                 }
-                wm.CreateWave(spawnPos, waveSpeed, color, loudness, 0);
+                wm.CreateWave(spawnPos, waveSpeed, color, loudness, sphereMaxSize);
             }
 
             time = 0;
