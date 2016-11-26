@@ -60,13 +60,32 @@ public class WaveManager : MonoBehaviour
             }
         }
 
+        Emit_Particles();
+
+        waveMaterial.SetFloat("_WavesCount", waves.Count);
+        if(waves.Count > 0)
+        {
+            waveMaterial.SetFloatArray("_Radius", wavesRadius);
+            waveMaterial.SetFloatArray("_Thickness", wavesThickness);
+            waveMaterial.SetVectorArray("_Waves", wavesPos);
+            waveMaterial.SetColorArray("_Color", wavesColor);
+        }
+
+    }
+
+    void Emit_Particles() {
+
         Camera cam = GetComponent<Camera>();
         ParticleSystem ps = GameObject.Find("Particle System").GetComponent<ParticleSystem>();
+
+        if (!ps)
+            return;
+
         ParticleSystem.EmitParams e_params = new ParticleSystem.EmitParams();
         e_params.startLifetime = 0.8f;
         e_params.startSize = 0.01f;
 
-        float min = 0.25f;
+        float min = 0.0f;
         float max = 0.5f;
 
         for (int x = Random.Range(0, (int)(cam.pixelWidth * max)); x < cam.pixelWidth; x += Random.Range((int)(cam.pixelWidth * min), (int)(cam.pixelWidth * max)))
@@ -98,15 +117,6 @@ public class WaveManager : MonoBehaviour
 
             }
 
-        }
-
-        waveMaterial.SetFloat("_WavesCount", waves.Count);
-        if(waves.Count > 0)
-        {
-            waveMaterial.SetFloatArray("_Radius", wavesRadius);
-            waveMaterial.SetFloatArray("_Thickness", wavesThickness);
-            waveMaterial.SetVectorArray("_Waves", wavesPos);
-            waveMaterial.SetColorArray("_Color", wavesColor);
         }
 
     }
