@@ -84,7 +84,7 @@ Material:
       second: 0
     - first:
         name: _FPOW
-      second: 0.66
+      second: 1.87
     - first:
         name: _GlossMapScale
       second: 1
@@ -108,7 +108,7 @@ Material:
       second: 0.02
     - first:
         name: _R0
-      second: -0.9
+      second: -0.38
     - first:
         name: _RimWidth
       second: 0
@@ -130,7 +130,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.6985294, g: 0.6985294, b: 0.6985294, a: 0.116}
+      second: {r: 1, g: 1, b: 1, a: 0.066}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

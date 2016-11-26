@@ -20,10 +20,6 @@ public class SoundWaveEmitter : MonoBehaviour
     private float time;
 
 
-    private float storedWaveSpeed;
-    private float storedWaveLoudness;
-    private float storedWaveHue;
-
     void Awake()
     {
         _audio = GetComponent<AudioSource>();
@@ -31,6 +27,7 @@ public class SoundWaveEmitter : MonoBehaviour
     void Start()
     {
         wm = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<WaveManager>();
+        
     }
     void Update()
     {
@@ -54,7 +51,7 @@ public class SoundWaveEmitter : MonoBehaviour
 
             if(wm != null)
             {
-                loudness = Mathf.Clamp(loudness, 1, 2);
+                loudness = Mathf.Clamp(loudness, 1, 3);
                 Vector3 spawnPos = transform.position;
                 if(origin != null)
                 {
