@@ -113,6 +113,11 @@ public class Wave {
             float sphereRadius = Mathf.Clamp(radius, 0, sphereMaxScale);
             sphere.transform.localScale = new Vector3(sphereRadius * 2, sphereRadius * 2, sphereRadius * 2);
 
+            if(sphereRadius == sphereMaxScale && sphereMaxScale != 0)
+            {
+                startSphereColor *= 0.5f;
+            }
+
             sphere.GetComponent<Renderer>().material.color = startSphereColor * waveColor;
         }
             
