@@ -9,6 +9,8 @@ public class RadioControl : MonoBehaviour {
     private float volume=1.0f;
     private float pitch=1.0f;
 
+    public bool hasInteracted = false;
+
     public VRTK_Knob volumeKnob;
     public VRTK_Knob pitchKnob;
 
@@ -34,6 +36,12 @@ public class RadioControl : MonoBehaviour {
         float newPitch = pitchKnob.GetValue();
             pitch = newPitch;
 
+
+        if(!hasInteracted)
+        {
+            if (volume != 1.0f || pitch != 1.0f)
+                hasInteracted = true;
+        }
 
         if (pitch > 3)
             pitch -= 6;

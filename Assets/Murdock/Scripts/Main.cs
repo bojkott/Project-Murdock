@@ -11,30 +11,40 @@ public class Main : MonoBehaviour {
         TWO,
         THREE,
         POST,
-        ERR
+        ERR,
+        NONE
     };
 
     public static PhaseID lastPhase;
     public static PhaseID currentPhase;
 
+    public GameObject preScenePrefab;
+
     // Phase1
-    public GameObject phoneScene;
+    public GameObject phoneScenePrefab;
 
     // Phase2
-    public GameObject reception;
+    public GameObject receptionPrefab;
 
     // Phase3
-    public GameObject shoeScene;
+    public GameObject shoeScenePrefab;
+
+    private GameObject preSceneInstance;
+    private GameObject phoneSceneInstance;
+    private GameObject receptionSceneInstance;
+    private GameObject shoeSceneInstance;
+
+    private ScreenFader fader;
+    private float time = 0;
 
     // Use this for initialization
     void Start()
     {
-        lastPhase = PhaseID.PRE;
-        currentPhase = PhaseID.ONE;
-
-        Deinit1Phase();
-        Deinit2Phase();
-        Deinit3Phase();
+        fader = GetComponent<ScreenFader>();
+        lastPhase = PhaseID.NONE;
+        currentPhase = PhaseID.PRE;
+        preSceneInstance = Instantiate(preScenePrefab);
+        preSceneInstance.SetActive(true);
     }
 	
 	// Update is called once per frame
@@ -58,9 +68,16 @@ public class Main : MonoBehaviour {
             PhaseID nextPhase;
 
             // Deinit
+            if (fader.fadeIn == true)
+                fader.fadeIn = false;
+
             switch (lastPhase)
             {
+                case PhaseID.NONE:
+                    nextPhase = PhaseID.PRE;
+                    break;
                 case PhaseID.PRE:
+                    Deinit0Phase();
                     nextPhase = PhaseID.ONE;
                     break;
                 case PhaseID.ONE:
@@ -79,66 +96,86 @@ public class Main : MonoBehaviour {
                     nextPhase = PhaseID.ERR;
                     break;
             }
+            time += Time.deltaTime;
+            if(time > 2.0)
+            {
+                lastPhase = currentPhase;
+                fader.fadeIn = true;
+                // Init
+                switch (nextPhase)
+                {
+                    case PhaseID.PRE:
+                        // NONE
+                        break;
+                    case PhaseID.ONE:
+                        Init1Phase();
+                        break;
+                    case PhaseID.TWO:
+                        Init2Phase();
+                        break;
+                    case PhaseID.THREE:
+                        Init3Phase();
+                        break;
+                    case PhaseID.ERR:
+                        // NONE
+                        break;
+                    default:
+                        // NONE
+                        break;
+                }
+                
+                currentPhase = nextPhase;
+                               
+            }
+            
 
             // Update last phase
-            lastPhase = currentPhase;
+            
 
-            // Init
-            switch (nextPhase)
-            {
-                case PhaseID.PRE:
-                    // NONE
-                    break;
-                case PhaseID.ONE:
-                    Init1Phase();
-                    break;
-                case PhaseID.TWO:
-                    Init2Phase();
-                    break;
-                case PhaseID.THREE:
-                    Init3Phase();
-                    break;
-                case PhaseID.ERR:
-                    // NONE
-                    break;
-                default:
-                    // NONE
-                    break;
-            }
+            
 
             // Update current phase.
-            currentPhase = nextPhase;
+            
         }
 	}
 
+
+    void Deinit0Phase()
+    {
+        Destroy(preSceneInstance);
+    }
+
     void Init1Phase()
     {
-        phoneScene.SetActive(true);
+        phoneSceneInstance = Instantiate(phoneScenePrefab);
+        phoneSceneInstance.SetActive(true);
     }
     void Init2Phase()
     {
-        reception.SetActive(true);
+        receptionSceneInstance = Instantiate(receptionPrefab);
+        receptionSceneInstance.SetActive(true);
         
     }
 
     void Init3Phase()
     {
-        shoeScene.SetActive(true);
+        shoeSceneInstance = Instantiate(shoeScenePrefab);
+        shoeSceneInstance.SetActive(true);
     }
 
     void Deinit1Phase()
     {
-        phoneScene.SetActive(false);
+        Destroy(phoneSceneInstance);
     }
 
     void Deinit2Phase()
     {
-        reception.SetActive(false);
+        Destroy(receptionSceneInstance);
     }
 
     void Deinit3Phase()
     {
-        shoeScene.SetActive(false);
+        Destroy(shoeSceneInstance);
     }
 
 }

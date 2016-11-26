@@ -9,8 +9,7 @@ public class Bink : VRTK_InteractableObject
     private const float maxCooldown = 0.3f;
     private float cooldown = 0.0f;
     private bool triggered = false;
-    private bool firstTime = true;
-    private float transitionTime = 60.0f;
+    public  bool firstTime = true;
     private Vector3 startPos;
     
 
@@ -43,10 +42,6 @@ public class Bink : VRTK_InteractableObject
                 triggered = false;
             }
         }
-        if (!firstTime)
-            transitionTime -= Time.deltaTime;
-
-        if (transitionTime < 0.0f)
-            Main.currentPhase = Main.PhaseID.THREE;
+        
     }
 }

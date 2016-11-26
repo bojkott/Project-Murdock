@@ -2,7 +2,7 @@
 using System.Collections;
 using VRTK;
 
-public class PhoneRingingScript : VRTK_InteractableObject
+public class PhoneRingingScript : MonoBehaviour
 {
     private float angle;
     private int speed;
@@ -12,6 +12,7 @@ public class PhoneRingingScript : VRTK_InteractableObject
     private Vector3 startPos;
 
     public GameObject phoneBody;
+    public Transform phoneModel;
 
     private bool colideOnce = true;
     public AudioSource collisionSound;
@@ -20,10 +21,13 @@ public class PhoneRingingScript : VRTK_InteractableObject
     private bool hasAnswered;
 
     private float transtionTimer = 5.0f;
-    // Use this for initialization
-    void Start()
-    {
 
+    private VRTK_InteractableObject interObj;
+
+    // Use this for initialization
+
+    void Start() {
+        this.interObj = GetComponent<VRTK_InteractableObject>();
         this.angle = Mathf.PI; // initial angle set to half way through the animation
 
         /*Pendle factors*/
@@ -35,9 +39,8 @@ public class PhoneRingingScript : VRTK_InteractableObject
 
         this.syncTimer = 0.3f;
 
-        this.hasAnswered = false;
+        
 
-        phoneBody.GetComponent<Collider>().enabled = false;
         startPos = this.transform.position;
     }
 
@@ -45,23 +48,19 @@ public class PhoneRingingScript : VRTK_InteractableObject
     void Update()
     {
         
-        if (this.grabbedSnapHandle)
+        if (interObj.IsGrabbed())
         {
             
-            this.gameObject.GetComponent<Rigidbody>().useGravity = true;
             AudioSource a = this.gameObject.GetComponent<AudioSource>();
             if (!a.isPlaying && !hasAnswered) 
                 a.Play();
             phoneBody.GetComponent<AudioSource>().Stop();
             phoneBody.GetComponent<Collider>().enabled = true;
             hasAnswered = true;
-
-            transtionTimer -= Time.deltaTime;
-            if (transtionTimer < 0.0f && Main.currentPhase != Main.PhaseID.TWO)
-                Main.currentPhase = Main.PhaseID.TWO; 
-        } 
+            } 
         else if (!hasAnswered)
         {
+            
             syncTimer -= Time.deltaTime;
             if (syncTimer < 0)
             {
@@ -72,29 +71,34 @@ public class PhoneRingingScript : VRTK_InteractableObject
 
                 if (this.ringTimer > 0)
                 {
-                    this.transform.RotateAround(this.transform.position, this.transform.forward, Mathf.Cos(angle) * this.flipFactor);
+                    phoneModel.RotateAround(phoneModel.position, phoneModel.forward, Mathf.Cos(angle) * this.flipFactor);
                     this.pauseTimer = 1.729f;
 
                 }
                 else if (this.pauseTimer < 0)
                 {
-                    transform.position = startPos;
+                    phoneModel.position = startPos;
                     this.ringTimer = 0.6f;
                 }
                 else
                 {
-                    this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, this.transform.rotation.eulerAngles.y, 0);
+                    phoneModel.rotation = Quaternion.Euler(phoneModel.rotation.eulerAngles.x, phoneModel.rotation.eulerAngles.y, 0);
                 }
             }
+        }
+        else
+        {
+            transtionTimer -= Time.deltaTime;
+            if (transtionTimer < 0)
+                Main.currentPhase = Main.PhaseID.TWO;
         }
     }
 
     void OnCollisionEnter(Collision x)
     {
-        if (hasAnswered && colideOnce)
-        {
+        if(!interObj.IsGrabbed() && x.impulse.magnitude > 5)
             this.collisionSound.Play();
-            colideOnce = false;
-        }
+
+
     }
 }

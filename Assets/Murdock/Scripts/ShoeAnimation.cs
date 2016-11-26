@@ -16,6 +16,8 @@ public class ShoeAnimation : MonoBehaviour {
     private Vector3 initPos;
     private Vector3 otherInitPos;
 
+    private float time;
+
 	// Use this for initialization
 	void Start () {
         this.horizontalStepDistance = 0.5f;
@@ -30,6 +32,13 @@ public class ShoeAnimation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        time += Time.deltaTime;
+        if(time > 17)
+        {
+            Main.currentPhase = Main.PhaseID.ONE;
+        }
+
         this.angle += Mathf.PI * Time.deltaTime * speed;
 
         if (Mathf.Clamp(Mathf.Sin(angle) * stepHeight, 0, stepHeight) > 0)
@@ -38,7 +47,7 @@ public class ShoeAnimation : MonoBehaviour {
             if (!stepSound.isPlaying && this.nextStep)
             {
                 this.nextStep = false;
-                stepSound.Play();
+                stepSound2.Play();
             }
         }
         else
@@ -47,7 +56,7 @@ public class ShoeAnimation : MonoBehaviour {
             if (!stepSound.isPlaying && !this.nextStep)
             {
                 this.nextStep = true;
-                stepSound2.Play();
+                stepSound.Play();
             }
         }
     }
