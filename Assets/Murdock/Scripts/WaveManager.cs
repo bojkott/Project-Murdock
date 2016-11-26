@@ -9,7 +9,7 @@ public class WaveManager : MonoBehaviour
 
     private List<Wave> waves = new List<Wave>();
 
-    const int MAX_WAVES = 200;
+    const int MAX_WAVES = 400;
     Vector4[] wavesPos = new Vector4[MAX_WAVES];
     Color[] wavesColor = new Color[MAX_WAVES];
     float[] wavesRadius = new float[MAX_WAVES];
@@ -20,22 +20,26 @@ public class WaveManager : MonoBehaviour
     public AnimationCurve fadeCurve;
     public AnimationCurve thicknessCurve;
 
+ 
+
 
     void Start()
     {
     }
 
-    public void CreateWave(Vector3 pos, float travelSpeed, Color col, float fadeSpeed, float trailModifier)
+    public void CreateWave(Vector3 pos, float travelSpeed, Color col, float fadeSpeed, float sphereMaxScale)
     {
+
+ 
         Wave wave = new Wave();
         wave.SetPosition(pos);
         wave.setTravelSpeed(travelSpeed);
         wave.SetColor(col);
         wave.SetFadeSpeed(fadeSpeed);
-        wave.SetTrailModifier(trailModifier);
         GameObject sphere = (GameObject)Instantiate(waveSpherePrefab, pos, Quaternion.identity);
         wave.SetSphere(sphere);
-        wave.SetThickness(1+trailModifier);
+        wave.SetSphereMaxScale(sphereMaxScale);
+        wave.SetThickness(1);
 
 
         waves.Add(wave);
@@ -100,7 +104,7 @@ public class WaveManager : MonoBehaviour
 
                     for (int i = 0; i < waves.Count; i++)
                     {
-                        float distance = Vector3.Distance(waves[i].sphere.transform.position, hit.point) - waves[i].GetRadius();
+                        float distance = Vector3.Distance(waves[i].GetPosition(), hit.point) - waves[i].GetRadius();
                         if (Mathf.Abs(distance) > 1f && distance < 0f)
                         {
 

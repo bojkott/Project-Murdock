@@ -28,10 +28,10 @@ Shader "Custom/WaveShaderPerObject" {
 
 				
 				uniform int _WavesCount;
-				uniform float3 _Waves[200];		// (x, y, z) = position
-				uniform float _Radius[200];		// radius
-				uniform float _Thickness[200];
-				uniform float4 _Color[200];
+				uniform float3 _Waves[400];		// (x, y, z) = position
+				uniform float _Radius[400];		// radius
+				uniform float _Thickness[400];
+				uniform float4 _Color[400];
 
 
 				half4 frag(vertOutput output) : COLOR{
