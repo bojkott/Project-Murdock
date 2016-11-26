@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class MicophoneWaveSpawner : MonoBehaviour {
+
+    public float mic_distance = 1;
+
     public float interval;
-    public Transform origin;
+    public Transform origin1;
+    public Transform origin2;
 
     public float saturation = 0.5f;
     public float vibrance = 1.0f;
@@ -17,12 +21,9 @@ public class MicophoneWaveSpawner : MonoBehaviour {
     private WaveManager wm;
     private float time;
 
-
     void Awake()
     {
         _audio = GetComponent<AudioSource>();
-
-       
     }
     void Start()
     {
@@ -33,50 +34,57 @@ public class MicophoneWaveSpawner : MonoBehaviour {
     void Update()
     {
 
-
-        if (_audio.isPlaying)
+        if(Vector3.Distance(wm.transform.position, transform.position) < mic_distance)
         {
 
-        }
-        else if (_audio.clip.isReadyToPlay)
-            _audio.Play();
-        else
-        {
-            _audio.clip = Microphone.Start("Built-in Microphone", true, 1, 44100);
-        }
-
-        time += Time.deltaTime;
-        loudness = GetAveragedVolume() * sensitivity;
-        if (loudness > 1 && time > interval)
-        {
-            float h = 0;
-            float waveSpeed = 0;
-            float[] spectrum = _audio.GetSpectrumData(samples, 0, fftWindow);
-
-            for (int i = 0; i < freqs; i++)
+            if (_audio.isPlaying)
             {
-                h += spectrum[i];
-                waveSpeed += spectrum[i] * i;
+
+            }
+            else if (_audio.clip.isReadyToPlay)
+                _audio.Play();
+            else
+            {
+                _audio.clip = Microphone.Start("Built-in Microphone", true, 1, 44100);
             }
 
-
-
-            Color color = Color.HSVToRGB(h, 0.5f, 1.0f);
-
-            if (wm != null)
+            time += Time.deltaTime;
+            loudness = GetAveragedVolume() * sensitivity;
+            if (loudness > 1 && time > interval)
             {
-                loudness = Mathf.Clamp(loudness, 1, 3);
-                Vector3 spawnPos = transform.position;
-                if (origin != null)
+                float h = 0;
+                float waveSpeed = 0;
+                float[] spectrum = _audio.GetSpectrumData(samples, 0, fftWindow);
+
+                for (int i = 0; i < freqs; i++)
                 {
-                    spawnPos = origin.position;
+                    h += spectrum[i];
+                    waveSpeed += spectrum[i] * i;
                 }
-                wm.CreateWave(spawnPos, waveSpeed, color, loudness, 0);
+
+
+
+                Color color = Color.HSVToRGB(h, 0.5f, 1.0f);
+
+                if (wm != null)
+                {
+                    loudness = Mathf.Clamp(loudness, 1, 3);
+                    Vector3 spawnPos = transform.position;
+                    if (origin1 != null)
+                    {
+                        wm.CreateWave(origin1.position, waveSpeed, color, loudness, 0);
+                        wm.CreateWave(origin2.position, waveSpeed, color, loudness, 0);
+                    }
+
+                }
+
+                time = 0;
             }
 
-            time = 0;
         }
+
     }
+
     float GetAveragedVolume()
     {
         float[] data = new float[256];

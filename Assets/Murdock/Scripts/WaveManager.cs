@@ -78,9 +78,6 @@ public class WaveManager : MonoBehaviour
         Camera cam = GetComponent<Camera>();
         ParticleSystem ps = GameObject.Find("Particle System").GetComponent<ParticleSystem>();
 
-        if (!ps)
-            return;
-
         ParticleSystem.EmitParams e_params = new ParticleSystem.EmitParams();
         e_params.startLifetime = 0.8f;
         e_params.startSize = 0.01f;
