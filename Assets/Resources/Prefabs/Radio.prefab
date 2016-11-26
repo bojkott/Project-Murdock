@@ -343,10 +343,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010751619400}
-  m_LocalRotation: {x: -0, y: 0.15386891, z: -0, w: -0.98809135}
-  m_LocalPosition: {x: -1.126, y: 1.04, z: 0.649}
-  m_LocalScale: {x: 0.22931659, y: 0.22931659, z: 0.22931659}
-  m_LocalEulerAnglesHint: {x: 0, y: -377.397, z: 0}
+  m_LocalRotation: {x: -0, y: 0.5148862, z: -0, w: -0.85725856}
+  m_LocalPosition: {x: -0.137, y: 0.596, z: 0.273}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalEulerAnglesHint: {x: 0, y: -422.043, z: 0}
   m_Children:
   - {fileID: 4000012333359584}
   - {fileID: 4000010282938056}
@@ -894,11 +894,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8ab9ae91bd92fa8488252d7a670e4068, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f78ab1342ed22a24a846bf2d9cb73a71, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   Priority: 128
@@ -970,19 +970,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aae33c477dd2fe4183300ccfcdabba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 0.05
+  interval: 0.2
   origin: {fileID: 4000012495781388}
   saturation: 0.2
   vibrance: 0.5
-  amp: 1
-  colorMod: {r: 1, g: 1, b: 1, a: 1}
+  amp: 100
+  colorMod: {r: 0.9117647, g: 0.6979716, b: 0, a: 1}
   sphereMaxSize: 0
   samples: 512
-  sensitivity: 20
-  Highfreqs: 128
+  sensitivity: 75
+  Highfreqs: 64
   LowFreqs: 0
   fftWindow: 0
-  loudness: 3
+  loudness: 0.84337217
 --- !u!114 &114000012158813272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   connectedTo: {fileID: 1000010987630552}
   direction: 1
   min: 1
-  max: 3
+  max: 6
   stepSize: 0.01
 --- !u!136 &136000010610294872
 CapsuleCollider:
