@@ -32,7 +32,5 @@ public class MicophoneWaveSpawner : MonoBehaviour {
             _audio.clip = Microphone.Start("Built-in Microphone", true, 1, 44100);
         }
 
-        }
     }
-
 }
