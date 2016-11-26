@@ -6,8 +6,11 @@ public class ShoeAnimation : MonoBehaviour {
     private float speed;
     private float stepHeight;
     private float angle;
-    private AudioSource stepSound;
-    private GameObject otherShoe;
+
+    public AudioSource stepSound;
+    public AudioSource stepSound2;
+    public GameObject otherShoe;
+
     private bool nextStep;
 
     private Vector3 initPos;
@@ -15,12 +18,11 @@ public class ShoeAnimation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        this.horizontalStepDistance = 0.1f;
-        this.stepHeight = 0.3f;
+        this.horizontalStepDistance = 0.5f;
+        this.stepHeight = 0.6f;
         this.angle = Mathf.PI / 2;
         this.speed = 0.5f;
 
-        this.otherShoe = (GameObject)Instantiate(Resources.Load("prefabs/ShoeRight"));
         this.initPos = this.transform.position;
         this.otherInitPos = this.otherShoe.transform.position;
         this.nextStep = true;
@@ -45,7 +47,7 @@ public class ShoeAnimation : MonoBehaviour {
             if (!stepSound.isPlaying && !this.nextStep)
             {
                 this.nextStep = true;
-                stepSound.Play();
+                stepSound2.Play();
             }
         }
     }

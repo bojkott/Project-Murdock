@@ -10,6 +10,8 @@ public class PhoneRingingScript : VRTK_InteractableObject
     private float ringTimer;
     private float pauseTimer;
 
+    public GameObject phoneBody;
+
     private float syncTimer;
     private bool hasAnswered;
 
@@ -38,11 +40,13 @@ public class PhoneRingingScript : VRTK_InteractableObject
         
         if (this.grabbedSnapHandle)
         {
-            hasAnswered = true;
+            
             this.gameObject.GetComponent<Rigidbody>().useGravity = true;
             AudioSource a = this.gameObject.GetComponent<AudioSource>();
-            if (!a.isPlaying) 
+            if (!a.isPlaying && !hasAnswered) 
                 a.Play();
+            phoneBody.GetComponent<AudioSource>().Stop();
+            hasAnswered = true;
         } 
         else if (!hasAnswered)
         {
@@ -72,6 +76,7 @@ public class PhoneRingingScript : VRTK_InteractableObject
         }
         if (hasAnswered && !this.grabbedSnapHandle)
         {
+
             transtionTimer -= Time.deltaTime;
             if (transtionTimer < 0.0f && Main.currentPhase != Main.PhaseID.TWO)
                 Main.currentPhase = Main.PhaseID.TWO; 

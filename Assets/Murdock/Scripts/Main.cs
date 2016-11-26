@@ -9,6 +9,7 @@ public class Main : MonoBehaviour {
         PRE = 0,
         ONE,
         TWO,
+        THREE,
         POST,
         ERR
     };
@@ -17,20 +18,28 @@ public class Main : MonoBehaviour {
     public static PhaseID currentPhase;
 
     // Phase1
-    private GameObject phoneBody;
-    private GameObject phoneHead;
-    private GameObject vulkanBord;
+    public GameObject phoneBody;
+    public GameObject phoneHead;
+    public GameObject vulkanBord1;
 
     // Phase2
-    private GameObject shoeLeft;
-    private GameObject room;
+    public GameObject vulkanBord2;
+    public GameObject callBell;
+    public GameObject room;
+    public GameObject fan1;
 
+    // Phase3
+    public GameObject shoe1;
+    public GameObject shoe2;
 
     // Use this for initialization
     void Start()
     {
         lastPhase = PhaseID.PRE;
         currentPhase = PhaseID.ONE;
+
+        Deinit1Phase();
+        Deinit2Phase();
     }
 	
 	// Update is called once per frame
@@ -43,6 +52,10 @@ public class Main : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.F2))
         {
             currentPhase = PhaseID.TWO;
+        }
+        else if (Input.GetKeyDown(KeyCode.F3))
+        {
+            currentPhase = PhaseID.THREE;
         }
 
         if (lastPhase != currentPhase)
@@ -61,6 +74,10 @@ public class Main : MonoBehaviour {
                     break;
                 case PhaseID.TWO:
                     Deinit2Phase();
+                    nextPhase = PhaseID.THREE;
+                    break;
+                case PhaseID.THREE:
+                    Deinit3Phase();
                     nextPhase = PhaseID.ONE;
                     break;
                 default:
@@ -83,6 +100,9 @@ public class Main : MonoBehaviour {
                 case PhaseID.TWO:
                     Init2Phase();
                     break;
+                case PhaseID.THREE:
+                    Init3Phase();
+                    break;
                 case PhaseID.ERR:
                     // NONE
                     break;
@@ -98,27 +118,42 @@ public class Main : MonoBehaviour {
 
     void Init1Phase()
     {
-        this.phoneBody = (GameObject)Instantiate(Resources.Load("prefabs/phoneBody"));
-        this.phoneHead = (GameObject)Instantiate(Resources.Load("prefabs/phoneHead"));
-        this.vulkanBord = (GameObject)Instantiate(Resources.Load("prefabs/vulkanBord"));
+        phoneBody.SetActive(true);
+        phoneHead.SetActive(true);
+        vulkanBord1.SetActive(true);
     }
     void Init2Phase()
     {
-        this.shoeLeft = (GameObject)Instantiate(Resources.Load("prefabs/ShoeLeft"));
-        this.room = (GameObject)Instantiate(Resources.Load("prefabs/Room"));
-
+        vulkanBord2.SetActive(true);
+        callBell.SetActive(true);
+        room.SetActive(true);
+        fan1.SetActive(true);
     }
     void Deinit1Phase()
     {
-        Destroy(this.phoneBody);
-        Destroy(this.vulkanBord);
+        phoneBody.SetActive(false);
+        phoneHead.SetActive(false);
+        vulkanBord1.SetActive(false);
     }
 
     void Deinit2Phase()
     {
-        Destroy(this.shoeLeft);
-        Destroy(this.room);
-        Destroy(this.phoneHead);
+        vulkanBord2.SetActive(false);
+        callBell.SetActive(false);
+        room.SetActive(false);
+        fan1.SetActive(false);
+    }
+
+    void Init3Phase()
+    {
+        shoe1.SetActive(true);
+        shoe2.SetActive(true);
+    }
+
+    void Deinit3Phase()
+    {
+        shoe1.SetActive(false);
+        shoe2.SetActive(false);
     }
 
 }
