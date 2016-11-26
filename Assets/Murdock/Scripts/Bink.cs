@@ -6,27 +6,30 @@ public class Bink : VRTK_InteractableObject
 {
     public AudioSource binkSource;
 
-    private const float maxCooldown = 0.2f;
+    private const float maxCooldown = 0.3f;
     private float cooldown = 0.0f;
     private bool triggered = false;
     private bool firstTime = true;
-    private float transitionTime = 5.0f;
+    private float transitionTime = 60.0f;
+    private Vector3 startPos;
+    
 
     // Use this for initialization
     void Start ()
     {
-	    
-	}
+        startPos = this.transform.position;
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (this.IsTouched() && !triggered && !this.binkSource.isPlaying)
+        if (this.IsTouched() && !triggered)
         {
             cooldown = maxCooldown;
             triggered = true;
             this.binkSource.Play();
             firstTime = false;
+            this.transform.position = startPos;
         }
         if (triggered)
         {

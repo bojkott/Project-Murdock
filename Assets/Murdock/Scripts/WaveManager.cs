@@ -9,7 +9,7 @@ public class WaveManager : MonoBehaviour
 
     private List<Wave> waves = new List<Wave>();
 
-    const int MAX_WAVES = 400;
+    const int MAX_WAVES = 200;
     Vector4[] wavesPos = new Vector4[MAX_WAVES];
     Color[] wavesColor = new Color[MAX_WAVES];
     float[] wavesRadius = new float[MAX_WAVES];
@@ -25,6 +25,7 @@ public class WaveManager : MonoBehaviour
 
     void Start()
     {
+
     }
 
     public void CreateWave(Vector3 pos, float travelSpeed, Color col, float fadeSpeed, float sphereMaxScale)
@@ -55,6 +56,7 @@ public class WaveManager : MonoBehaviour
             waves[i].Update(growthCurve, fadeCurve, thicknessCurve);             
             wavesPos[i] = waves[i].GetPosition();
             wavesColor[i] = waves[i].GetColor();
+
             wavesRadius[i] = waves[i].GetRadius();
             wavesThickness[i] = waves[i].GetThickness();
             if (!waves[i].alive)
@@ -108,6 +110,7 @@ public class WaveManager : MonoBehaviour
                             e_params.position = hit.point;
                             e_params.velocity = hit.normal * e_params.velocity.magnitude;
                             e_params.startColor = wavesColor[i];
+                           
                             ps.Emit(e_params, 1);
 
                         }

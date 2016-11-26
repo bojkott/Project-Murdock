@@ -9,6 +9,7 @@ public class PhoneRingingScript : VRTK_InteractableObject
     private float flipFactor;
     private float ringTimer;
     private float pauseTimer;
+    private Vector3 startPos;
 
     public GameObject phoneBody;
 
@@ -37,6 +38,7 @@ public class PhoneRingingScript : VRTK_InteractableObject
         this.hasAnswered = false;
 
         phoneBody.GetComponent<Collider>().enabled = false;
+        startPos = this.transform.position;
     }
 
     // Update is called once per frame
@@ -53,6 +55,10 @@ public class PhoneRingingScript : VRTK_InteractableObject
             phoneBody.GetComponent<AudioSource>().Stop();
             phoneBody.GetComponent<Collider>().enabled = true;
             hasAnswered = true;
+
+            transtionTimer -= Time.deltaTime;
+            if (transtionTimer < 0.0f && Main.currentPhase != Main.PhaseID.TWO)
+                Main.currentPhase = Main.PhaseID.TWO; 
         } 
         else if (!hasAnswered)
         {
@@ -72,6 +78,7 @@ public class PhoneRingingScript : VRTK_InteractableObject
                 }
                 else if (this.pauseTimer < 0)
                 {
+                    transform.position = startPos;
                     this.ringTimer = 0.6f;
                 }
                 else
@@ -79,13 +86,6 @@ public class PhoneRingingScript : VRTK_InteractableObject
                     this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, this.transform.rotation.eulerAngles.y, 0);
                 }
             }
-        }
-        if (hasAnswered && !this.grabbedSnapHandle)
-        {
-
-            transtionTimer -= Time.deltaTime;
-            if (transtionTimer < 0.0f && Main.currentPhase != Main.PhaseID.TWO)
-                Main.currentPhase = Main.PhaseID.TWO; 
         }
     }
 

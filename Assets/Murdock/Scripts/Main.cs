@@ -27,10 +27,12 @@ public class Main : MonoBehaviour {
     public GameObject callBell;
     public GameObject room;
     public GameObject fan1;
+    public GameObject radio;
 
     // Phase3
     public GameObject shoe1;
     public GameObject shoe2;
+    public GameObject door;
 
     // Use this for initialization
     void Start()
@@ -128,8 +130,17 @@ public class Main : MonoBehaviour {
         vulkanBord2.SetActive(true);
         callBell.SetActive(true);
         room.SetActive(true);
-        fan1.SetActive(true);
+        //fan1.SetActive(true);
+        radio.SetActive(true);
     }
+
+    void Init3Phase()
+    {
+        shoe1.SetActive(true);
+        shoe2.SetActive(true);
+        door.SetActive(true);
+    }
+
     void Deinit1Phase()
     {
         phoneBody.SetActive(false);
@@ -142,19 +153,15 @@ public class Main : MonoBehaviour {
         vulkanBord2.SetActive(false);
         callBell.SetActive(false);
         room.SetActive(false);
-        fan1.SetActive(false);
-    }
-
-    void Init3Phase()
-    {
-        shoe1.SetActive(true);
-        shoe2.SetActive(true);
+        //fan1.SetActive(false);
+        radio.SetActive(false);
     }
 
     void Deinit3Phase()
     {
         shoe1.SetActive(false);
         shoe2.SetActive(false);
+        door.SetActive(false);
     }
 
 }
