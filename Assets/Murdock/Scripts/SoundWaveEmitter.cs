@@ -7,6 +7,9 @@ public class SoundWaveEmitter : MonoBehaviour
     public float interval;
     public Transform origin;
 
+    public float saturation = 0.5f;
+    public float vibrance = 1.0f;
+
     public int samples = 1024;
     public float sensitivity = 100;
     public int freqs = 128;
@@ -15,6 +18,12 @@ public class SoundWaveEmitter : MonoBehaviour
     private AudioSource _audio;
     private WaveManager wm;
     private float time;
+
+
+    private float storedWaveSpeed;
+    private float storedWaveLoudness;
+    private float storedWaveHue;
+
     void Awake()
     {
         _audio = GetComponent<AudioSource>();
@@ -39,7 +48,7 @@ public class SoundWaveEmitter : MonoBehaviour
                 waveSpeed += spectrum[i]*i;
             }
 
-            Debug.Log(waveSpeed);
+            
 
             Color color = Color.HSVToRGB(h, 0.5f, 1.0f);
 

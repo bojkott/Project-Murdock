@@ -1,15 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 5d7f4c401ae8946bcb0d6ff68a9e7466
 ShaderImporter:
   userData: 
-=======
-guid: 37fe2e8b6bd9e64489fd2d36cd1a19ce
-timeCreated: 1480076215
-licenseType: Free
-ShaderImporter:
-  defaultTextures: []
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
->>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

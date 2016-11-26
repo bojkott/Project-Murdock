@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 1fd999d1b2cf94a45a5b0a47ce074bef
 MonoImporter:
   serializedVersion: 2
@@ -10,19 +9,7 @@ MonoImporter:
       type: 3}
   - colorCorrectionSelectiveShader: {fileID: 4800000, guid: e515e0f94cefc4c0db54b45cba621544,
       type: 3}
-=======
-guid: bc4d7c8a9b6cb0247821fbdbbaa301ad
-timeCreated: 1480076197
-licenseType: Free
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
->>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
-<<<<<<< HEAD
-=======
-  assetBundleVariant: 
->>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

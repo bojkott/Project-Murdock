@@ -35,7 +35,7 @@ public class WaveManager : MonoBehaviour
         wave.SetTrailModifier(trailModifier);
         GameObject sphere = (GameObject)Instantiate(waveSpherePrefab, pos, Quaternion.identity);
         wave.SetSphere(sphere);
-        wave.SetThickness(1);
+        wave.SetThickness(1+trailModifier);
 
 
         waves.Add(wave);

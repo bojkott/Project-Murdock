@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: a88a26a276b4e47619ce2c5adad33fab
 MonoImporter:
   serializedVersion: 2
@@ -11,16 +10,3 @@ MonoImporter:
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
-=======
-guid: 44430fcc4ddcbcf41999107f13c17c79
-timeCreated: 1480076194
-licenseType: Free
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
->>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

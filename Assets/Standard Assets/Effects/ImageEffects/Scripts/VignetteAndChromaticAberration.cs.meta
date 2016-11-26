@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: dd6d4281e5d7cd44d8c6e38bc2c1b8d8
 MonoImporter:
   serializedVersion: 2
@@ -9,19 +8,7 @@ MonoImporter:
       type: 3}
   - chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
       type: 3}
-=======
-guid: 15a92f561d8e91549833ee2e676c2eed
-timeCreated: 1480076193
-licenseType: Free
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
->>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
-<<<<<<< HEAD
-=======
-  assetBundleVariant: 
->>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e

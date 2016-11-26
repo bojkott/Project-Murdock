@@ -3,9 +3,10 @@
 Shader "Custom/WaveShaderPerObject" {
 
 		SubShader{
-
+			Cull Off
 			Pass{
 				CGPROGRAM
+				
 				#pragma vertex vert             
 				#pragma fragment frag
 
@@ -45,10 +46,9 @@ Shader "Custom/WaveShaderPerObject" {
 						if (dist < _Radius[i] && dist > _Radius[i]-_Thickness[i])
 						{
 							float shade = dist/(_Radius[i] - dist);
-							color += _Color[i]*shade * 0.3;
-
-							if (_Radius[i] - dist < 0.2)
-								color *= 0;
+							if (_Radius[i] - dist > 0.2)
+								color += _Color[i]*shade * 0.3;
+										
 							
 						}
 

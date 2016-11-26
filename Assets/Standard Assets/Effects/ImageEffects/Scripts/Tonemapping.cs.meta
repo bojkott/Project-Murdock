@@ -1,23 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: e50e925fb93c78246bf995d9dc3a2330
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - tonemapper: {fileID: 4800000, guid: 003377fc2620a44939dadde6fe3f8190, type: 3}
-=======
-guid: 2ce9063408a28ad41bcb525d738db9c9
-timeCreated: 1480076193
-licenseType: Free
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
->>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
-<<<<<<< HEAD
-=======
-  assetBundleVariant: 
->>>>>>> c2baf3ce8571e403a2d379260e1c56a1d004995e
