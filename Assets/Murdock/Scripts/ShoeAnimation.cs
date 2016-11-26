@@ -36,7 +36,7 @@ public class ShoeAnimation : MonoBehaviour {
         time += Time.deltaTime;
         if(time > 17)
         {
-            Main.currentPhase = Main.PhaseID.ONE;
+            Main.currentPhase = Main.PhaseID.FOUR;
         }
 
         this.angle += Mathf.PI * Time.deltaTime * speed;

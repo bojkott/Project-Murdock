@@ -10,6 +10,7 @@ public class Main : MonoBehaviour {
         ONE,
         TWO,
         THREE,
+        FOUR,
         POST,
         ERR,
         NONE
@@ -28,11 +29,14 @@ public class Main : MonoBehaviour {
 
     // Phase3
     public GameObject shoeScenePrefab;
+    // Phase4
+    public GameObject stageScenePrefab;
 
     private GameObject preSceneInstance;
     private GameObject phoneSceneInstance;
     private GameObject receptionSceneInstance;
     private GameObject shoeSceneInstance;
+    private GameObject stageSceneInstance;
 
     private ScreenFader fader;
     private float time = 0;
@@ -90,6 +94,10 @@ public class Main : MonoBehaviour {
                     break;
                 case PhaseID.THREE:
                     Deinit3Phase();
+                    nextPhase = PhaseID.FOUR;
+                    break;
+                case PhaseID.FOUR:
+                    Deinit4Phase();
                     nextPhase = PhaseID.ONE;
                     break;
                 default:
@@ -115,6 +123,9 @@ public class Main : MonoBehaviour {
                         break;
                     case PhaseID.THREE:
                         Init3Phase();
+                        break;
+                    case PhaseID.FOUR:
+                        Init4Phase();
                         break;
                     case PhaseID.ERR:
                         // NONE
@@ -163,6 +174,12 @@ public class Main : MonoBehaviour {
         shoeSceneInstance.SetActive(true);
     }
 
+    void Init4Phase()
+    {
+        stageSceneInstance = Instantiate(stageScenePrefab);
+        stageSceneInstance.SetActive(true);
+    }
+
     void Deinit1Phase()
     {
         Destroy(phoneSceneInstance);
@@ -176,6 +193,11 @@ public class Main : MonoBehaviour {
     void Deinit3Phase()
     {
         Destroy(shoeSceneInstance);
+    }
+
+    void Deinit4Phase()
+    {
+        Destroy(stageSceneInstance);
     }
 
 }

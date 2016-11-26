@@ -69,7 +69,7 @@ public class WaveManager : MonoBehaviour
             }
         }
 
-        Emit_Particles(average_color * 3);
+        Emit_Particles(Color.white);
 
         waveMaterial.SetFloat("_WavesCount", waves.Count);
         if(waves.Count > 0)

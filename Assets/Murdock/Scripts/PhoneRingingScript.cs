@@ -96,7 +96,7 @@ public class PhoneRingingScript : MonoBehaviour
 
     void OnCollisionEnter(Collision x)
     {
-        if(!interObj.IsGrabbed() && x.impulse.magnitude > 5)
+        if(!interObj.IsGrabbed() && x.impulse.magnitude > 1)
             this.collisionSound.Play();
 
 
