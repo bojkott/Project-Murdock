@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< 4b38935d2660aa8ad8805bfc10d3addb0f04d7cb
 guid: 5f982a17bddecc64699ab40347592d1f
 timeCreated: 1480166036
+=======
+guid: f78ab1342ed22a24a846bf2d9cb73a71
+timeCreated: 1480166917
+>>>>>>> Working on lobby
 licenseType: Free
 AudioImporter:
   serializedVersion: 6
