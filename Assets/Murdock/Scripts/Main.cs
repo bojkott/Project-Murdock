@@ -18,21 +18,13 @@ public class Main : MonoBehaviour {
     public static PhaseID currentPhase;
 
     // Phase1
-    public GameObject phoneBody;
-    public GameObject phoneHead;
-    public GameObject vulkanBord1;
+    public GameObject phoneScene;
 
     // Phase2
-    public GameObject vulkanBord2;
-    public GameObject callBell;
-    public GameObject room;
-    public GameObject fan1;
-    public GameObject radio;
+    public GameObject reception;
 
     // Phase3
-    public GameObject shoe1;
-    public GameObject shoe2;
-    public GameObject door;
+    public GameObject shoeScene;
 
     // Use this for initialization
     void Start()
@@ -121,47 +113,32 @@ public class Main : MonoBehaviour {
 
     void Init1Phase()
     {
-        phoneBody.SetActive(true);
-        phoneHead.SetActive(true);
-        vulkanBord1.SetActive(true);
+        phoneScene.SetActive(true);
     }
     void Init2Phase()
     {
-        vulkanBord2.SetActive(true);
-        callBell.SetActive(true);
-        room.SetActive(true);
-        //fan1.SetActive(true);
-        radio.SetActive(true);
+        reception.SetActive(true);
+        
     }
 
     void Init3Phase()
     {
-        shoe1.SetActive(true);
-        shoe2.SetActive(true);
-        door.SetActive(true);
+        shoeScene.SetActive(true);
     }
 
     void Deinit1Phase()
     {
-        phoneBody.SetActive(false);
-        phoneHead.SetActive(false);
-        vulkanBord1.SetActive(false);
+        phoneScene.SetActive(false);
     }
 
     void Deinit2Phase()
     {
-        vulkanBord2.SetActive(false);
-        callBell.SetActive(false);
-        room.SetActive(false);
-        //fan1.SetActive(false);
-        radio.SetActive(false);
+        reception.SetActive(false);
     }
 
     void Deinit3Phase()
     {
-        shoe1.SetActive(false);
-        shoe2.SetActive(false);
-        door.SetActive(false);
+        shoeScene.SetActive(false);
     }
 
 }

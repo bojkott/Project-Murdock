@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< 5468653abcf318963f6351f3a2e6a40b6b39345c
 guid: 7a14afcebe1b1754cb01ad8c381327ea
 timeCreated: 1480172125
+=======
+guid: 646daec7940a49e429b052c676699cbd
+timeCreated: 1480173867
+>>>>>>> bla
 licenseType: Free
 AudioImporter:
   serializedVersion: 6
