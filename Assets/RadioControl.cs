@@ -32,8 +32,11 @@ public class RadioControl : MonoBehaviour {
             
 
         float newPitch = pitchKnob.GetValue();
-        if (Mathf.Abs(pitch - newPitch) < 0.1f)
             pitch = newPitch;
+
+
+        if (pitch > 3)
+            pitch -= 6;
 
 
         volumeIndicator.transform.position = Vector3.Lerp(lowPoint.position, highPoint.position, volume);
