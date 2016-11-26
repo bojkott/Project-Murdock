@@ -9,7 +9,7 @@ public class WaveManager : MonoBehaviour
 
     private List<Wave> waves = new List<Wave>();
 
-    const int MAX_WAVES = 100;
+    const int MAX_WAVES = 200;
     Vector4[] wavesPos = new Vector4[MAX_WAVES];
     Color[] wavesColor = new Color[MAX_WAVES];
     float[] wavesRadius = new float[MAX_WAVES];

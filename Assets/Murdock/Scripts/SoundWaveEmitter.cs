@@ -5,6 +5,7 @@ public class SoundWaveEmitter : MonoBehaviour
 {
 
     public float interval;
+    public Transform origin;
 
     public int samples = 1024;
     public float sensitivity = 100;
@@ -45,7 +46,12 @@ public class SoundWaveEmitter : MonoBehaviour
             if(wm != null)
             {
                 loudness = Mathf.Clamp(loudness, 1, 2);
-                wm.CreateWave(transform.position, waveSpeed, color, loudness, 0);
+                Vector3 spawnPos = transform.position;
+                if(origin != null)
+                {
+                    spawnPos = origin.position;
+                }
+                wm.CreateWave(spawnPos, waveSpeed, color, loudness, 0);
             }
 
             time = 0;
