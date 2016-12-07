@@ -7,7 +7,7 @@ public class TestWave : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<WaveManager>().CreateWave(transform.position, 5, Random.ColorHSV(), 1, 0.8f);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<WaveManager>().CreateWave(gameObject, transform.position, 5, Random.ColorHSV(), 1, true);
     }
 	
 	// Update is called once per frame
@@ -17,7 +17,7 @@ public class TestWave : MonoBehaviour {
         if(time > 3)
         {
             time = 0;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<WaveManager>().CreateWave(transform.position, 5, Random.ColorHSV(), 1, 0.8f);
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<WaveManager>().CreateWave(gameObject, transform.position, 5, Random.ColorHSV(), 1, true);
         }
     }
 }

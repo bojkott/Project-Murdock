@@ -2,20 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+
+struct WaveObjet
+{
+    public List<Wave> waves;
+}
+
+
 public class WaveManager : MonoBehaviour
 {
+
+
     public Material waveMaterial;
+    public Material waveMaterial2;
     public GameObject waveSpherePrefab;
 
     private List<Wave> waves = new List<Wave>();
 
-    const int MAX_WAVES = 200;
+    private Dictionary<GameObject, WaveObjet> waveDict = new Dictionary<GameObject, WaveObjet>();
+
+    const int MAX_WAVES = 500;
     Vector4[] wavesPos = new Vector4[MAX_WAVES];
     Color[] wavesColor = new Color[MAX_WAVES];
     float[] wavesRadius = new float[MAX_WAVES];
     float[] wavesThickness = new float[MAX_WAVES];
-
-
+    
     public AnimationCurve growthCurve;
     public AnimationCurve fadeCurve;
     public AnimationCurve thicknessCurve;
@@ -28,21 +40,32 @@ public class WaveManager : MonoBehaviour
 
     }
 
-    public void CreateWave(Vector3 pos, float travelSpeed, Color col, float fadeSpeed, float sphereMaxScale)
+    public void CreateWave(GameObject spawnedFrom, Vector3 pos, float maxRadius, Color col, float fadeSpeed, bool spawnSphere)
     {
 
- 
+
+        if(!waveDict.ContainsKey(spawnedFrom))
+        {
+            WaveObjet waveObj = new WaveObjet();
+            waveObj.waves = new List<Wave>();
+            waveDict.Add(spawnedFrom, waveObj);
+        }
+
+        List<Wave> waves = waveDict[spawnedFrom].waves;
+
         Wave wave = new Wave();
         wave.SetPosition(pos);
-        wave.setTravelSpeed(travelSpeed);
+        wave.SetMaxRadius(maxRadius);
         wave.SetColor(col);
         wave.SetFadeSpeed(fadeSpeed);
-        GameObject sphere = (GameObject)Instantiate(waveSpherePrefab, pos, Quaternion.identity);
-        wave.SetSphere(sphere);
-        wave.SetSphereMaxScale(sphereMaxScale);
-        wave.SetThickness(1);
 
-
+        if(spawnSphere)
+        {
+            GameObject sphere = (GameObject)Instantiate(waveSpherePrefab, pos, Quaternion.identity);
+            wave.SetSphere(sphere);
+            
+        }
+        wave.SetThickness(2);
         waves.Add(wave);
 
     }
@@ -50,7 +73,6 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
 
-        Color average_color = new Color();
 
         for(int i=0;i<waves.Count;i++)
         {
@@ -58,76 +80,82 @@ public class WaveManager : MonoBehaviour
             wavesPos[i] = waves[i].GetPosition();
             wavesColor[i] = waves[i].GetColor();
 
-            average_color += waves[i].GetColor() / waves.Count;
-
             wavesRadius[i] = waves[i].GetRadius();
             wavesThickness[i] = waves[i].GetThickness();
             if (!waves[i].alive)
             {
-                Destroy(waves[i].sphere);
+                if(waves[i].sphere)
+                    Destroy(waves[i].sphere);
                 waves.Remove(waves[i]);
             }
         }
 
-        Emit_Particles(Color.white);
 
-        waveMaterial.SetFloat("_WavesCount", waves.Count);
-        if(waves.Count > 0)
+        int offset = 0;
+        List<GameObject> keys = new List<GameObject>(waveDict.Keys);
+        foreach (GameObject key in keys)
         {
-            waveMaterial.SetFloatArray("_Radius", wavesRadius);
-            waveMaterial.SetFloatArray("_Thickness", wavesThickness);
-            waveMaterial.SetVectorArray("_Waves", wavesPos);
-            waveMaterial.SetColorArray("_Color", wavesColor);
-        }
-
-    }
-
-    void Emit_Particles(Color color) {
-
-        Camera cam = GetComponent<Camera>();
-        ParticleSystem ps = GameObject.Find("Particle System").GetComponent<ParticleSystem>();
-
-        ParticleSystem.EmitParams e_params = new ParticleSystem.EmitParams();
-        e_params.startLifetime = 0.8f;
-        e_params.startSize = 0.01f;
-
-        float min = 0.25f;
-        float max = 0.50f;
-
-        for (int x = (int)Random.Range(0, (cam.pixelWidth * max)); x < cam.pixelWidth; x += (int)Random.Range((cam.pixelWidth * min), (cam.pixelWidth * max)))
-        {
-            for (int y = (int)Random.Range(0, (cam.pixelHeight * max)); y < cam.pixelHeight; y += (int)Random.Range((cam.pixelHeight * min), (cam.pixelHeight * max)))
+            List<Wave> waves = waveDict[key].waves;
+            for (int i = 0; i < waves.Count; i++)
             {
+                
+                waves[i].Update(growthCurve, fadeCurve, thicknessCurve);
 
-                RaycastHit hit;
+                wavesPos[offset] = waves[i].GetPosition();
+                wavesColor[offset] = waves[i].GetColor();
+                wavesRadius[offset] = waves[i].GetRadius();
+                wavesThickness[offset] = waves[i].GetThickness();
 
-                if (Physics.Raycast(cam.ScreenPointToRay(new Vector3(x, y, 0)), out hit))
+                if (!waves[i].alive)
                 {
-
-                    for (int i = 0; i < waves.Count; i++)
-                    {
-                        float distance = Vector3.Distance(waves[i].GetPosition(), hit.point) - waves[i].GetRadius();
-                        if (Mathf.Abs(distance) > 1f && distance < 0f)
-                        {
-
-                            e_params.position = hit.point;
-                            e_params.velocity = hit.normal * e_params.velocity.magnitude;
-                            e_params.startColor = wavesColor[i];
-                            ps.gameObject.GetComponent<ParticleSystemRenderer>().material.color = color;
-                            ps.Emit(e_params, 1);
-
-                            break;
-
-                        }
-
-                    }
-
+                    if (waves[i].sphere)
+                        Destroy(waves[i].sphere);
+                    waves.Remove(waves[i]);
                 }
-
+                                
+                offset++;
             }
 
+            if (waves.Count == 0)
+                waveDict.Remove(key);
         }
 
+
+
+        UpdateMaterial(waveMaterial);
+        UpdateMaterial(waveMaterial2);
+
     }
-	
+
+
+    void UpdateMaterial(Material mat)
+    {
+        mat.SetFloat("_WavesCount", waveDict.Count);
+        if (waveDict.Count> 0)
+        {
+            float[] waveObjCount = GetWaveObjCounts();
+            
+            mat.SetFloatArray("_SpawnedIdWaveCount", waveObjCount);
+            mat.SetFloatArray("_Radius", wavesRadius);
+            mat.SetFloatArray("_Thickness", wavesThickness);
+            mat.SetVectorArray("_Waves", wavesPos);
+            mat.SetColorArray("_Color", wavesColor);
+        }
+    }
+
+
+
+    float[] GetWaveObjCounts()
+    {
+        float[] waveObjCounts = new float[100];
+        int i = 0;
+        foreach (WaveObjet waveObj in waveDict.Values)
+        {
+            waveObjCounts[i] = waveObj.waves.Count;
+            i++;
+
+        }
+        return waveObjCounts;
+    }
+
 }

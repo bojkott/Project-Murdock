@@ -2326,10 +2326,11 @@ AudioSource:
   m_GameObject: {fileID: 1000011749976684}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300001, guid: 7a5adff17a9295e4b8608bdc9ed6bb22,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 246991f137e00c943be07c6f1942b0ee, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.326
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2400,7 +2401,8 @@ AudioSource:
   m_GameObject: {fileID: 1000012809762262}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300001, guid: 7a5adff17a9295e4b8608bdc9ed6bb22,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2454,7 +2456,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2523,13 +2525,14 @@ MonoBehaviour:
   vibrance: 1
   amp: 200
   colorMod: {r: 0, g: 0, b: 0, a: 1}
-  sphereMaxSize: 0
+  maxRadius: 100
   samples: 1024
   sensitivity: 400
   Highfreqs: 128
   LowFreqs: 0
   fftWindow: 0
   loudness: 10.217217
+  radius: 0
 --- !u!114 &114000012180367992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2547,13 +2550,14 @@ MonoBehaviour:
   vibrance: 1
   amp: 200
   colorMod: {r: 0, g: 0, b: 0, a: 1}
-  sphereMaxSize: 0
+  maxRadius: 100
   samples: 1024
   sensitivity: 400
   Highfreqs: 128
   LowFreqs: 0
   fftWindow: 0
   loudness: 10.217217
+  radius: 0
 --- !u!114 &114000013569915646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2576,19 +2580,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aae33c477dd2fe4183300ccfcdabba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 0.2
+  interval: 0.1
   origin: {fileID: 0}
-  saturation: 0.5
-  vibrance: 1
-  amp: 150
-  colorMod: {r: 0.89705884, g: 0, b: 0.798073, a: 1}
-  sphereMaxSize: 0
+  saturation: 1
+  vibrance: 0.07
+  amp: 500
+  colorMod: {r: 0.86206913, g: 0, b: 1, a: 1}
+  maxRadius: 100
   samples: 1024
-  sensitivity: 30
+  sensitivity: 70
   Highfreqs: 128
-  LowFreqs: 0
-  fftWindow: 0
-  loudness: 7.108759
+  LowFreqs: 20
+  fftWindow: 5
+  loudness: 0.9901411
+  radius: 0.9825314
 --- !u!114 &114000013790442226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2618,19 +2623,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aae33c477dd2fe4183300ccfcdabba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 0.2
-  origin: {fileID: 4000013036971232}
-  saturation: 0.5
-  vibrance: 1
-  amp: 100
+  interval: 0.1
+  origin: {fileID: 0}
+  saturation: 1
+  vibrance: 0.07
+  amp: 500
   colorMod: {r: 0, g: 0, b: 0, a: 1}
-  sphereMaxSize: 0
+  maxRadius: 100
   samples: 1024
-  sensitivity: 300
+  sensitivity: 50
   Highfreqs: 128
-  LowFreqs: 0
-  fftWindow: 0
-  loudness: 10.217217
+  LowFreqs: 20
+  fftWindow: 5
+  loudness: 0.9901411
+  radius: 0.9825314
 --- !u!114 &114000014216874644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2648,13 +2654,14 @@ MonoBehaviour:
   vibrance: 1
   amp: 100
   colorMod: {r: 0, g: 0, b: 0, a: 1}
-  sphereMaxSize: 0
+  maxRadius: 100
   samples: 1024
   sensitivity: 300
   Highfreqs: 128
   LowFreqs: 0
   fftWindow: 0
   loudness: 10.217217
+  radius: 0
 --- !u!135 &135000011971926870
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -21,6 +21,6 @@ public class TestSphereCollide : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        waveManager.CreateWave(col.contacts[0].point, col.relativeVelocity.magnitude, color, fadeSpeed, 0.8f);
+        waveManager.CreateWave(gameObject, col.contacts[0].point, col.relativeVelocity.magnitude, color, fadeSpeed, true);
     }
 }

@@ -5,7 +5,7 @@ public class Wave {
 
     private Vector3 position;
     private float radius;
-    private float travelSpeed;
+    private float maxRadius;
     private Material mat;
 
     private float trailWidth;
@@ -22,7 +22,6 @@ public class Wave {
     private Color startSphereColor;
     private float thickness;
     private float maxThickness;
-    private float sphereMaxScale;
 
     public bool alive = true;
 
@@ -42,9 +41,9 @@ public class Wave {
         return position;
     }
 
-    public void setTravelSpeed(float speed)
+    public void SetMaxRadius(float maxRadius)
     {
-        travelSpeed = speed;
+        this.maxRadius = maxRadius;
     }
 
     public void SetColor(Color col)
@@ -61,14 +60,6 @@ public class Wave {
     public void SetFadeSpeed(float fadeSpeed)
     {
         this.fadeSpeed = fadeSpeed;
-    }
-
-    public void SetSphereMaxScale(float scale)
-    {
-        if (scale == 0)
-            sphereMaxScale = 100;
-        else
-            sphereMaxScale = scale;
     }
 
 
@@ -94,11 +85,12 @@ public class Wave {
         return thickness;
     }
 
+
     public void Update(AnimationCurve growthCurve, AnimationCurve fadeCurve, AnimationCurve thicknessCurve)
     {
         life += Time.deltaTime / fadeSpeed;
 
-        radius += travelSpeed * growthCurve.Evaluate(life);
+        radius = maxRadius * growthCurve.Evaluate(life);
 
        
 
@@ -110,15 +102,11 @@ public class Wave {
 
         if(sphere)
         {
-            float sphereRadius = Mathf.Clamp(radius, 0, sphereMaxScale);
-            sphere.transform.localScale = new Vector3(sphereRadius * 2, sphereRadius * 2, sphereRadius * 2);
 
-            if(sphereRadius == sphereMaxScale && sphereMaxScale != 0)
-            {
-                startSphereColor *= 0.5f;
-            }
+            sphere.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);
 
-            sphere.GetComponent<Renderer>().material.color = startSphereColor * waveColor;
+
+            sphere.GetComponent<Renderer>().material.color = startSphereColor * startWaveColor;
         }
             
 

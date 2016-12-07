@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000011783144798}
+  m_IsPrefabParent: 1
+--- !u!1 &1000011783144798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012267036914}
+  - 114: {fileID: 114000010689843998}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: WaveManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000012267036914
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011783144798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.12404072, y: 2.1737313, z: -0.00017166138}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114000010689843998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011783144798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9268f45b13f1c14980a442d80170c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveMaterial: {fileID: 2100000, guid: 774d2058650839949bd5e8c0f053644e, type: 2}
+  waveMaterial2: {fileID: 2100000, guid: dd9d059cec1797d4fa5b7318653c8cd7, type: 2}
+  waveSpherePrefab: {fileID: 1000011662417374, guid: cc0f49b890afb9a479585496e58b9e8b,
+    type: 2}
+  growthCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    - time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 10
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  fadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 1.9274077
+      outSlope: 1.9274077
+      tangentMode: 10
+    - time: 0.5056382
+      value: 0.97457093
+      inSlope: 0.084463574
+      outSlope: 0.084463574
+      tangentMode: 0
+    - time: 0.77744514
+      value: 0.98375213
+      inSlope: 0.004277926
+      outSlope: 0.004277926
+      tangentMode: 0
+    - time: 1
+      value: 1.0750873
+      inSlope: 1.6446534
+      outSlope: 1.6446534
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  thicknessCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: -0.04394567
+      value: 1.025029
+      inSlope: -0.41523704
+      outSlope: -0.41523704
+      tangentMode: 0
+    - time: 0.9370748
+      value: 0.71847206
+      inSlope: -0.18477872
+      outSlope: -0.18477872
+      tangentMode: 0
+    - time: 1.2555864
+      value: 0.6891029
+      inSlope: -0.01612107
+      outSlope: -0.01612107
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
