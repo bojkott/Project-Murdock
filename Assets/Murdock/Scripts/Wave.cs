@@ -25,6 +25,8 @@ public class Wave {
 
     public bool alive = true;
 
+    private Color blackColor = new Color(0, 0, 0, 0);
+
     void Start()
     {
         this.radius = 0;
@@ -98,7 +100,7 @@ public class Wave {
 
         thickness = thicknessCurve.Evaluate(life) * maxThickness;
 
-        waveColor = Color.Lerp(startWaveColor, Color.black, fadeCurve.Evaluate(life));
+        waveColor = Color.Lerp(startWaveColor, blackColor, fadeCurve.Evaluate(life));
 
         if(sphere)
         {
@@ -106,7 +108,7 @@ public class Wave {
             sphere.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);
 
 
-            sphere.GetComponent<Renderer>().material.color = startSphereColor * startWaveColor;
+            sphere.GetComponent<Renderer>().material.color = startSphereColor * waveColor;
         }
             
 

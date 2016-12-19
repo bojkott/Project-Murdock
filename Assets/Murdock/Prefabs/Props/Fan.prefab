@@ -737,7 +737,7 @@ MonoBehaviour:
   origin: {fileID: 4000013163429136}
   saturation: 0.626
   vibrance: 0.2
-  amp: 200
+  amp: 150
   colorMod: {r: 0, g: 0, b: 0, a: 1}
-  sensitivity: 100
-  maxRadius: 10
+  sensitivity: 55
+  maxRadius: 2

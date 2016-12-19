@@ -40,8 +40,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013477075974}
-  m_LocalRotation: {x: -0.79858357, y: -0.09819878, z: 0.069498256, w: 0.5897383}
-  m_LocalPosition: {x: -0.5125, y: 0.732, z: 0.051}
+  m_LocalRotation: {x: -0.80359435, y: -0.23209566, z: 0.15508725, w: 0.5256574}
+  m_LocalPosition: {x: -0.6065095, y: 1.3442644, z: 0.04722374}
   m_LocalScale: {x: 0.20734, y: 0.20734, z: 0.20734}
   m_LocalEulerAnglesHint: {x: -68.144005, y: -142.15501, z: 139.804}
   m_Children: []
@@ -215,8 +215,8 @@ MonoBehaviour:
   saturation: 1
   vibrance: 1
   amp: 200
-  colorMod: {r: 0, g: 0, b: 0, a: 1}
-  sensitivity: 30
+  colorMod: {r: 0.2827587, g: 0, b: 1, a: 1}
+  sensitivity: 52.9
   maxRadius: 10
 --- !u!114 &114000013074615048
 MonoBehaviour:

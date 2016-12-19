@@ -11,7 +11,7 @@ public class ReceptionChecker : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(!bellController.firstTime && radioControl.hasInteracted)
+        if(!bellController.firstTime)
             {
                 timer -= Time.deltaTime;
                 if (timer < 0)

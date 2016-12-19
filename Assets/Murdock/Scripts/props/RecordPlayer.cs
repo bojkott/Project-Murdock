@@ -10,6 +10,7 @@ public class RecordPlayer : MonoBehaviour {
 
     private GameObject disk;
 
+
     private float discSpinSpeed = 180;
 
     AudioSource staticAudioSource;
@@ -32,20 +33,23 @@ public class RecordPlayer : MonoBehaviour {
 
         speed += 1;
 
-        if (speed > 2)
+        if (speed == 1)
+            speed = 1;
+        else if (speed > 2)
             speed = 4 - speed;
         else
-            speed = (2 - 1.5f*speed);
+            speed = (2 - 1.5f * speed);
 
 
         spinPlatter.transform.Rotate(new Vector3(0, discSpinSpeed*Time.deltaTime*speed, 0));
 
 
-        if (disk)
+        if (disk != null)
+        {
             audioSource = disk.GetComponent<AudioSource>();
 
-
-        audioSource.timeSamples = 10;
+        }
+            
         audioSource.pitch = speed;
 
         if (nail.touchingPlatter)

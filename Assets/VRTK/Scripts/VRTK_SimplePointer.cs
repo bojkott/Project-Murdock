@@ -37,10 +37,15 @@ namespace VRTK
         private Vector3 pointerTipScale = new Vector3(0.05f, 0.05f, 0.05f);
         private Vector3 pointerCursorOriginalScale = Vector3.one;
 
+
+        private WaveManager wm;
+
+
         protected override void OnEnable()
         {
             base.OnEnable();
             InitPointer();
+            wm = WaveManager.instance;
         }
 
         protected override void OnDisable()
@@ -52,6 +57,22 @@ namespace VRTK
             }
         }
 
+
+
+        private bool HitWave(RaycastHit pointerCollidedWith)
+        {
+            foreach (Wave w in wm.GetWaves())
+            {
+                if (Vector3.Distance(pointerCollidedWith.point, w.GetPosition()) <= w.GetRadius())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
         protected override void Update()
         {
             base.Update();
@@ -60,8 +81,16 @@ namespace VRTK
                 Ray pointerRaycast = new Ray(GetOriginPosition(), GetOriginForward());
                 RaycastHit pointerCollidedWith;
                 var rayHit = Physics.Raycast(pointerRaycast, out pointerCollidedWith, pointerLength, ~layersToIgnore);
+
+                rayHit = rayHit && HitWave(pointerCollidedWith); //Special shit
+
                 var pointerBeamLength = GetPointerBeamLength(rayHit, pointerCollidedWith);
                 SetPointerTransform(pointerBeamLength, pointerThickness);
+
+
+               
+
+
                 if (rayHit)
                 {
                     if (pointerCursorMatchTargetNormal)

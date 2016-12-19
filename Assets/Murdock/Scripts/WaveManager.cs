@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 
-struct WaveObjet
+struct WaveObject
 {
     public List<Wave> waves;
 }
@@ -12,15 +12,13 @@ struct WaveObjet
 
 public class WaveManager : MonoBehaviour
 {
+    public bool DebugMaterials = false;
+    public static WaveManager instance = null; //Singleton
 
-
-    public Material waveMaterial;
-    public Material waveMaterial2;
+    public List<Material> waveMaterials;
     public GameObject waveSpherePrefab;
 
-    private List<Wave> waves = new List<Wave>();
-
-    private Dictionary<GameObject, WaveObjet> waveDict = new Dictionary<GameObject, WaveObjet>();
+    private Dictionary<GameObject, WaveObject> waveDict = new Dictionary<GameObject, WaveObject>();
 
     const int MAX_WAVES = 500;
     Vector4[] wavesPos = new Vector4[MAX_WAVES];
@@ -35,18 +33,45 @@ public class WaveManager : MonoBehaviour
  
 
 
-    void Start()
+    void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
 
+
+    }
+
+
+    private void ChangeShader()
+    {
+        if (DebugMaterials)
+        {
+            foreach (Material m in waveMaterials)
+            {
+                m.shader = Shader.Find("Standard");
+            }
+        }
+        else
+        {
+            foreach (Material m in waveMaterials)
+            {
+                Shader s = Shader.Find("Custom/WaveShaderPerObject");
+                if (m.shader != s)
+                    m.shader = s;
+            }
+        }
     }
 
     public void CreateWave(GameObject spawnedFrom, Vector3 pos, float maxRadius, Color col, float fadeSpeed, bool spawnSphere)
     {
 
-
+        ChangeShader();
         if(!waveDict.ContainsKey(spawnedFrom))
         {
-            WaveObjet waveObj = new WaveObjet();
+            WaveObject waveObj = new WaveObject();
             waveObj.waves = new List<Wave>();
             waveDict.Add(spawnedFrom, waveObj);
         }
@@ -70,26 +95,18 @@ public class WaveManager : MonoBehaviour
 
     }
 
+    public List<Wave> GetWaves()
+    {
+        List<Wave> waves = new List<Wave>();
+        foreach (WaveObject waveObj in waveDict.Values)
+        {
+            waves.AddRange(waveObj.waves);
+        }
+        return waves;
+    }
+
     void Update()
     {
-
-
-        for(int i=0;i<waves.Count;i++)
-        {
-            waves[i].Update(growthCurve, fadeCurve, thicknessCurve);             
-            wavesPos[i] = waves[i].GetPosition();
-            wavesColor[i] = waves[i].GetColor();
-
-            wavesRadius[i] = waves[i].GetRadius();
-            wavesThickness[i] = waves[i].GetThickness();
-            if (!waves[i].alive)
-            {
-                if(waves[i].sphere)
-                    Destroy(waves[i].sphere);
-                waves.Remove(waves[i]);
-            }
-        }
-
 
         int offset = 0;
         List<GameObject> keys = new List<GameObject>(waveDict.Keys);
@@ -121,9 +138,11 @@ public class WaveManager : MonoBehaviour
         }
 
 
-
-        UpdateMaterial(waveMaterial);
-        UpdateMaterial(waveMaterial2);
+        foreach(Material m in waveMaterials)
+        {
+            UpdateMaterial(m);
+        }
+       
 
     }
 
@@ -149,7 +168,7 @@ public class WaveManager : MonoBehaviour
     {
         float[] waveObjCounts = new float[100];
         int i = 0;
-        foreach (WaveObjet waveObj in waveDict.Values)
+        foreach (WaveObject waveObj in waveDict.Values)
         {
             waveObjCounts[i] = waveObj.waves.Count;
             i++;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SoundWaveEmitter : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class SoundWaveEmitter : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float SphereSpawnInterval;
 
-    public Transform origin;
+    public List<Transform> origins;
     [Range(0.0f, 1.0f)]
     public float saturation = 0.5f;
     [Range(0.0f, 1.0f)]
@@ -20,7 +21,7 @@ public class SoundWaveEmitter : MonoBehaviour
 
     public Color colorMod = Color.white;
 
-    [Range(1.0f, 100.0f)]
+    [Range(1.0f, 200.0f)]
     public float sensitivity = 100;
     [Range(1.0f, 10.0f)]
     public float maxRadius = 10;
@@ -30,6 +31,7 @@ public class SoundWaveEmitter : MonoBehaviour
     private float Spheretime;
     private float time;
 
+    private float prevLoudness = 0;
 
     void Awake()
     {
@@ -41,48 +43,50 @@ public class SoundWaveEmitter : MonoBehaviour
             sourceAudio = gameObject.AddComponent<AudioSource>();
         }
             
-        _audio = gameObject.AddComponent<AudioSource>();
-        UpdateAudio();
-        sourceAudio.spatialBlend = 1;
-        _audio.spatialBlend = 0;
-        _audio.outputAudioMixerGroup = sourceAudio.outputAudioMixerGroup;
+        //_audio = gameObject.AddComponent<AudioSource>();
+        //UpdateAudio();
+        //sourceAudio.spatialBlend = 1;
+        //_audio.spatialBlend = 0;
+        //_audio.outputAudioMixerGroup = sourceAudio.outputAudioMixerGroup;
         sourceAudio.outputAudioMixerGroup = null;
 
-        if (_audio.playOnAwake)
-            _audio.Play();
+        //if (_audio.playOnAwake)
+        //    _audio.Play();
 
-
+        _audio = sourceAudio;
 
     }
     void Start()
     {
-        wm = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaveManager>();
-        if (!origin)
-            origin = transform;
+        wm = WaveManager.instance;
+        if (origins.Count == 0)
+            origins.Add(transform);
 
 
     }
     void Update()
     {
-        UpdateAudio();
+        //UpdateAudio();
+
 
 
         Spheretime += Time.deltaTime;
         time += Time.deltaTime;
 
-        float loudness = GetAveragedVolume(0);
+        float loudness = GetAveragedVolume(0)+GetAveragedVolume(1);
         loudness *= sensitivity;
 
-        if (loudness > 0 && time > 0.02f)
+
+        if (loudness > 0 && time > 0.05f)
         {
 
             float hue = GetSpectrum(0)+GetSpectrum(1);
 
 
-            hue *= amp;
+            float AmpedHue = hue*amp;
 
 
-            Color color = Color.HSVToRGB(hue, saturation, vibrance)  + colorMod;
+            Color color = Color.HSVToRGB(AmpedHue, saturation, vibrance)  + colorMod;
 
 
             float radius = loudness;
@@ -91,17 +95,24 @@ public class SoundWaveEmitter : MonoBehaviour
 
             color *= (radius / maxRadius);
 
-            if (hue > SphereSpawnThreshold && Spheretime > SphereSpawnInterval)
+
+            foreach(Transform spawnPoint in origins)
             {
-                wm.CreateWave(gameObject, origin.position, radius, color, radius, true);
-                Spheretime = 0;
+                if ((loudness-prevLoudness) > SphereSpawnThreshold && Spheretime > SphereSpawnInterval)
+                {
+                    wm.CreateWave(gameObject, spawnPoint.position, radius, color, radius, true);
+                    Spheretime = 0;
+                }
+                else
+                    wm.CreateWave(gameObject, spawnPoint.position, radius, color, radius, false);
             }
-            else
-                wm.CreateWave(gameObject, origin.position, radius, color, radius, false);
+
 
             time = 0;
 
+            
         }
+        prevLoudness = loudness;
     }
     float GetAveragedVolume(int channel)
     {
@@ -123,7 +134,7 @@ public class SoundWaveEmitter : MonoBehaviour
     float GetSpectrum(int channel)
     {
         float hue = 0;
-        float[] spectrum = _audio.GetSpectrumData(1024, 0, FFTWindow.Hamming);
+        float[] spectrum = _audio.GetSpectrumData(1024, channel, FFTWindow.Hamming);
         for (int i = 0; i < 1024; i++)
         {
             hue += (spectrum[i] * spectrum[i]);
